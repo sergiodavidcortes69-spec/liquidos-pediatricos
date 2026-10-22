@@ -116,7 +116,6 @@ function m3(){
  if(P.dias<=28)plan+=' Paciente neonato: vigilar glucometría y balance hídrico.';
  h+='<h4>Plan (copiar y pegar)</h4><textarea id="plan">'+plan+'</textarea><button type="button" onclick="cp()">Copiar plan</button>';
  if(P.dias<=28)h+='<div class="alert">Neonato: ajuste individualmente la tabla de déficit y los volúmenes.</div>';
- if(!grande&&p>=11.5&&p<=12.5)h+='<div class="alert">Peso cercano a 12 kg: verifique qué columna aplica. Se usó '+(p<12?'&lt;12 kg':'&gt;12 kg')+'.</div>';
  $('o3').innerHTML=h}
 function cp(){const t=$('plan');t.select();try{navigator.clipboard.writeText(t.value)}catch(e){document.execCommand('copy')}}
 window.addEventListener('load',()=>{$('js').style.display='none';m2()});
