@@ -1,38 +1,111 @@
 <!DOCTYPE html>
 <html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Líquidos pediátricos por módulos</title>
+<title>Herramientas clínicas · Urgencias</title>
 <style>
-:root{--c:#0b6e8a;--bg:#f2f7f9}*{box-sizing:border-box}
-body{font-family:system-ui,Arial,sans-serif;background:var(--bg);margin:0;color:#1d2b33}
-header{background:var(--c);color:#fff;padding:16px;text-align:center}
-main{max-width:780px;margin:auto;padding:14px}
-.card{background:#fff;border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px #0002}
-h3{margin:0 0 6px;color:var(--c)}label{display:block;font-weight:600;margin:10px 0 4px}
-input,select,textarea{width:100%;padding:10px;border:1px solid #9bb;border-radius:8px;font-size:16px;font-family:inherit}
+:root{--c:#12355b;--c2:#0e7c86;--ink:#16293b;--mut:#51667a;--line:#d9e4ec;--bg:#eaf1f6}
+body.t-home{--c:#12355b;--c2:#0e7c86}
+body.t-formulas{--c:#1b4f9c;--c2:#2f8fd6}
+body.t-liquidos{--c:#0b6f7a;--c2:#17a8a2}
+body.t-sir{--c:#a82230;--c2:#dc4a3f}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);margin:0;color:var(--ink);line-height:1.4}
+header{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--c) 0%,var(--c2) 100%);color:#fff;padding:22px 16px 34px;text-align:center;transition:background .3s}
+header h2{margin:0;font-size:1.45em;letter-spacing:.2px}
+header .sub{display:block;margin-top:4px;color:#d7ecf3;font-size:.9em}
+header .logo{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.18);margin-bottom:8px}
+header svg.ecg{position:absolute;left:0;right:0;bottom:0;width:100%;height:30px;opacity:.35}
+main{max-width:780px;margin:-14px auto 0;padding:0 14px 24px;position:relative}
+.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 2px 10px #12355b1a;border-top:4px solid var(--c)}
+h3{margin:0 0 8px;color:var(--c);font-size:1.12em}h4{margin:16px 0 6px;color:var(--c);border-bottom:2px solid var(--line);padding-bottom:4px}
+label{display:block;font-weight:600;margin:10px 0 4px;font-size:.93em;color:var(--ink)}
+input,select,textarea{width:100%;padding:11px;border:1.5px solid #b9cad8;border-radius:10px;font-size:16px;font-family:inherit;background:#fbfdff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--c2);box-shadow:0 0 0 3px #17a8a233}
 textarea{min-height:130px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-button{margin-top:14px;width:100%;padding:12px;background:var(--c);color:#fff;border:0;border-radius:8px;font-size:17px;cursor:pointer}
-table{width:100%;border-collapse:collapse;margin-top:8px}td,th{padding:7px;border-bottom:1px solid #dde;text-align:left}
+button{margin-top:14px;width:100%;padding:13px;background:linear-gradient(135deg,var(--c),var(--c2));color:#fff;border:0;border-radius:10px;font-size:16.5px;font-weight:600;cursor:pointer;box-shadow:0 2px 6px #0003}
+button:active{transform:translateY(1px)}
+button.back{background:#fff;color:var(--c);border:2px solid var(--c);margin:0 0 12px;box-shadow:none;font-weight:600}
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.96em}td,th{padding:8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+tr:nth-child(even) td{background:#f6fafd}th{background:#eef4f9;color:var(--c)}
 .big{font-size:1.2em;font-weight:700;color:var(--c)}
 .chk{display:flex;gap:8px;align-items:center;font-weight:400;margin:6px 0}.chk input{width:auto}
-.warn{background:#fff3cd;border-left:5px solid #e0a800;padding:10px;border-radius:6px;margin-top:8px;font-size:.9em}
-.alert{background:#fde2e2;border-left:5px solid #c00;padding:10px;border-radius:6px;margin-top:8px}
-.res{margin-top:10px;padding:10px;background:#e8f4f8;border-radius:8px}
-.pill{display:inline-block;padding:4px 12px;border-radius:20px;color:#fff;font-weight:700}
-</style></head><body>
-<header><h2>Calculadora de líquidos pediátricos</h2><small>1 Datos · 2 Deshidratación OMS · 3 Análisis y plan</small></header>
+.warn{background:#fff6dd;border-left:5px solid #e3a600;padding:10px 12px;border-radius:8px;margin-top:8px;font-size:.9em;color:#5a4300}
+.alert{background:#fde8e8;border-left:5px solid #c62828;padding:10px 12px;border-radius:8px;margin-top:8px}
+.res{margin-top:10px;padding:11px;background:#eaf3f9;background:color-mix(in srgb,var(--c) 7%,white);border:1px solid var(--line);border-radius:10px}
+.pill{display:inline-block;padding:4px 12px;border-radius:20px;color:#fff;font-weight:700;letter-spacing:.3px}
+.view{display:none}.view.on{display:block}
+.tile{display:flex;gap:14px;align-items:center;width:100%;text-align:left;background:#fff;color:var(--ink);border:0;border-radius:14px;padding:16px;margin:0 0 14px;box-shadow:0 2px 10px #12355b1f;border-left:8px solid var(--tc)}
+.tile .ic{flex:0 0 54px;height:54px;border-radius:14px;background:var(--tc);display:flex;align-items:center;justify-content:center}
+.tile b{display:block;font-size:1.1em;color:var(--tc);margin-bottom:3px}.tile span{font-size:.92em;color:var(--mut);font-weight:400}
+.tile.t1{--tc:#1b4f9c}.tile.t2{--tc:#0b6f7a}.tile.t3{--tc:#a82230}
+.drug{border:1.5px solid var(--line);border-radius:12px;padding:12px;margin:10px 0;background:#fcfeff}
+.ml{font-size:1.15em;font-weight:700;color:var(--c)}
+.ord{margin-top:6px;padding:9px 10px;background:#fff;border-left:4px solid var(--c2);border-radius:8px;font-size:.95em;box-shadow:0 1px 3px #0001}
+.refs{font-size:.88em;color:#345}.refs li{margin-bottom:6px}
+small{color:var(--mut)}.out{margin-top:8px}
+footer{text-align:center;color:var(--mut);font-size:.8em;padding:6px 14px 22px}
+</style></head><body class="t-home">
+<header>
+<div class="logo"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></div>
+<h2>Herramientas clínicas</h2><span class="sub">Urgencias · Pediatría · Atención primaria</span>
+<svg class="ecg" viewBox="0 0 400 30" preserveAspectRatio="none"><path d="M0 18 H110 L125 18 L135 4 L148 27 L158 14 L168 18 H260 L275 18 L285 6 L298 26 L308 15 L318 18 H400" fill="none" stroke="#fff" stroke-width="2"/></svg>
+</header>
 <main>
 <noscript><div class="alert">JavaScript está desactivado. Abra el archivo en Chrome o Safari.</div></noscript>
-<div class="warn" id="js">Si este aviso no desaparece, JavaScript no está corriendo: abra el archivo en Chrome/Safari (no desde la vista previa de WhatsApp o Drive).</div>
+<div class="warn" id="js">Si este aviso no desaparece, JavaScript no está corriendo: abra el enlace en Chrome/Safari (no desde la vista previa de WhatsApp o Drive).</div>
+<div class="view on" id="v-home">
+<button class="tile t1" type="button" onclick="ir('formulas')"><div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><rect x="8" y="6" width="8" height="3"/><path d="M8 13h1M12 13h1M16 13h0M8 17h1M12 17h1M16 17h0" stroke-linecap="round" stroke-width="2.2"/></svg></div><div><b>1. Fórmulas pediátricas</b><span>Calculadoras interactivas: basales, déficit, peso estimado, tubo y conversión de mcg/mg a mL.</span></div></button>
+<button class="tile t2" type="button" onclick="ir('liquidos')"><div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.5C12 2.5 5.5 10 5.5 14.5a6.5 6.5 0 0013 0C18.5 10 12 2.5 12 2.5z"/></svg></div><div><b>2. Líquidos basales y deshidratación</b><span>Clasificación OMS y plan para copiar y pegar.</span></div></button>
+<button class="tile t3" type="button" onclick="ir('sir')"><div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v8"/><path d="M12 11c-1-1.5-3-3-5-3-2 0-3 3-3 7 0 3 1 5 3 5 2 0 4-1 5-4"/><path d="M12 11c1-1.5 3-3 5-3 2 0 3 3 3 7 0 3-1 5-3 5-2 0-4-1-5-4"/></svg></div><div><b>3. Secuencia de intubación rápida</b><span>Adulto o pediátrico: tubo, fármacos en orden, órdenes en mL para enfermería y plan para la nota.</span></div></button>
+</div>
 
-<div class="card" id="m1"><h3>Módulo 1 · Datos del paciente</h3>
+<div class="view" id="v-formulas">
+<button class="back" type="button" onclick="ir('home')">← Volver al inicio</button>
+
+<div class="card"><h3>Líquidos basales y superficie corporal</h3>
+<p><small>Holliday-Segar hasta 30 kg; más de 30 kg: 1.500 × SCT ÷ 24. SCT: Mosteller con talla; sin talla (peso×4+7)/(peso+90).</small></p>
+<div class="row"><div><label>Peso (kg)</label><input id="f1_p" type="number" step="any" inputmode="decimal" oninput="fBas()"></div>
+<div><label>Talla (cm) – opcional</label><input id="f1_t" type="number" step="any" inputmode="decimal" oninput="fBas()"></div></div>
+<div class="out" id="f1_o"></div></div>
+
+<div class="card"><h3>Déficit por deshidratación</h3>
+<p><small>Menos de 12 kg: 50/100/150 cc/kg. 12 a 30 kg: 30/60/90 cc/kg. Más de 30 kg: 500/1.000/1.500 × SCT. DHT III: bolo 20 cc/kg que se resta del déficit.</small></p>
+<div class="row"><div><label>Peso (kg)</label><input id="f2_p" type="number" step="any" inputmode="decimal" oninput="fDef()"></div>
+<div><label>Grado</label><select id="f2_d" onchange="fDef()"><option value="1">DHT I</option><option value="2">DHT II</option><option value="3">DHT III</option></select></div></div>
+<label>Talla (cm) – opcional, solo para más de 30 kg</label><input id="f2_t" type="number" step="any" inputmode="decimal" oninput="fDef()">
+<div class="out" id="f2_o"></div></div>
+
+<div class="card"><h3>Peso estimado por edad</h3>
+<p><small>(Edad en años × 3) + 3. Es solo una estimación: pese al paciente apenas sea posible.</small></p>
+<label>Edad (años)</label><input id="f3_e" type="number" step="any" inputmode="decimal" oninput="fPeso()">
+<div class="out" id="f3_o"></div></div>
+
+<div class="card"><h3>Tubo endotraqueal pediátrico</h3>
+<p><small>Neonato a 6 meses: 3,5 (con balón 3,0). 6 a 18 meses: 4,0 (con balón 3,5). Mayores: sin balón edad/4 + 4; con balón edad/4 + 3 (menores de 2 años) o + 3,5. Profundidad: DI × 3.</small></p>
+<div class="row"><div><label>Edad</label><div class="row"><input id="f4_e" type="number" step="any" inputmode="decimal" oninput="fTubo()"><select id="f4_u" onchange="fTubo()"><option value="a">años</option><option value="m">meses</option><option value="d">días</option></select></div></div>
+<div><label>Peso (kg) – opcional</label><input id="f4_p" type="number" step="any" inputmode="decimal" oninput="fTubo()"></div></div>
+<div class="out" id="f4_o"></div></div>
+
+<div class="card"><h3>Convertidor: dosis a mL</h3>
+<p><small>1 mg = 1.000 mcg · 1 g = 1.000 mg · 1 % = 10 mg/mL. Escriba la dosis que necesita y lo que dice la ampolla.</small></p>
+<label>Dosis a administrar</label>
+<div class="row"><input id="f5_c" type="number" step="any" inputmode="decimal" oninput="fConv()"><select id="f5_cu" onchange="fConv()"><option value="mcg">mcg</option><option value="mg" selected>mg</option><option value="g">g</option></select></div>
+<label>La ampolla o frasco contiene</label>
+<div class="row"><div class="row"><input id="f5_t" type="number" step="any" inputmode="decimal" oninput="fConv()"><select id="f5_tu" onchange="fConv()"><option value="mcg">mcg</option><option value="mg" selected>mg</option><option value="g">g</option></select></div>
+<div><input id="f5_v" type="number" step="any" inputmode="decimal" placeholder="en cuántos mL" oninput="fConv()"></div></div>
+<div class="out" id="f5_o"></div></div>
+</div>
+
+<div class="view" id="v-liquidos">
+<button class="back" type="button" onclick="ir('home')">← Volver al inicio</button>
+<div class="card" id="c1"><h3>Módulo 1 · Datos del paciente</h3>
 <div class="row"><div><label>Sexo</label><select id="sexo"><option>Femenino</option><option>Masculino</option></select></div>
 <div><label>Edad</label><div class="row"><input id="edad" type="number" min="0" step="any" inputmode="decimal" placeholder="Valor"><select id="uni"><option value="a">años</option><option value="m">meses</option><option value="d">días</option></select></div></div></div>
 <div class="row"><div><label>Peso (kg)</label><input id="peso" type="number" step="any" inputmode="decimal"></div>
 <div><label>Talla (cm) – opcional</label><input id="talla" type="number" step="any" inputmode="decimal"></div></div>
-<button type="button" onclick="m1()">Calcular superficie corporal</button><div id="o1"></div></div>
+<button type="button" onclick="liq1()">Calcular superficie corporal</button><div id="o1"></div></div>
 
-<div class="card" id="m2"><h3>Módulo 2 · Deshidratación (OMS)</h3>
+<div class="card" id="c2"><h3>Módulo 2 · Deshidratación (OMS)</h3>
 <label style="color:#c00">Signos de deshidratación grave</label>
 <label class="chk"><input type="checkbox" class="g"> Letárgico o inconsciente</label>
 <label class="chk"><input type="checkbox" class="g"> Ojos hundidos</label>
@@ -43,55 +116,44 @@ table{width:100%;border-collapse:collapse;margin-top:8px}td,th{padding:7px;borde
 <label class="chk"><input type="checkbox" class="a"> Ojos hundidos</label>
 <label class="chk"><input type="checkbox" class="a"> Bebe ávidamente, con sed</label>
 <label class="chk"><input type="checkbox" class="a"> Pliegue cutáneo lento</label>
-<button type="button" onclick="m2()">Clasificar</button><div id="o2"></div></div>
+<button type="button" onclick="liq2()">Clasificar</button><div id="o2"></div></div>
 
-<div class="card" id="m3"><h3>Módulo 3 · Análisis de líquidos</h3>
-<button type="button" onclick="m3()">Generar análisis y plan</button><div id="o3"></div></div>
+<div class="card" id="c3"><h3>Módulo 3 · Análisis de líquidos</h3>
+<button type="button" onclick="liq3()">Generar análisis y plan</button><div id="o3"></div></div>
+</div>
 
-<div class="warn"><b>Aviso:</b> apoyo clínico; verifique todo antes de ordenar. Confirme concentraciones de Natrol/Katrol con farmacia.</div>
+<div class="view" id="v-sir">
+<button class="back" type="button" onclick="ir('home')">← Volver al inicio</button>
+<div class="card"><h3>Secuencia de intubación rápida</h3>
+<div class="row"><div><label>Sexo</label><select id="s_sexo"><option>Femenino</option><option>Masculino</option></select></div>
+<div><label>Edad</label><div class="row"><input id="s_edad" type="number" min="0" step="any" inputmode="decimal" placeholder="Valor"><select id="s_uni"><option value="a">años</option><option value="m">meses</option><option value="d">días</option></select></div></div></div>
+<label>Peso (kg)</label><input id="s_peso" type="number" step="any" inputmode="decimal">
+<button type="button" onclick="sir()">Calcular</button><div id="s_out"></div></div>
+<div class="card refs"><h3>Referencias bibliográficas</h3>
+<ol>
+<li>Romero Manuel O, Pociello Llohan L. Actualización en la secuencia de intubación rápida. Sistema d'Emergències Mèdiques de Catalunya y Hospital Clínic i Provincial de Barcelona.</li>
+<li>Actualizaciones en la secuencia de intubación rápida en anestesia y cuidados críticos. Revisión narrativa de la evidencia 2020-2025.</li>
+<li>Intubación de secuencia rápida: un procedimiento que todo médico debiese conocer. Revisión bibliográfica a propósito de un caso.</li>
+<li>Pérez Perilla P, Moreno Carrillo A, et al. Guía para la secuencia de inducción e intubación rápida en el servicio de emergencias. Univ Med. Vol. 54, n.º 2, pp. 175-198. Pontificia Universidad Javeriana, Bogotá.</li>
+<li>Guardabassi D, Bernal Hinojosa N. Intubación de secuencia rápida en pediatría. Rev Chil Anest. 2025;54(5):523-527. doi:10.25237/revchilanestv54n5-06.</li>
+<li>Reanimación cardiopulmonar avanzada en pediatría. An Pediatr (Barc). 2006. Tamaño y profundidad del tubo endotraqueal en niños.</li>
+<li>Presentaciones comerciales en Colombia y dosis de vecuronio: registros sanitarios y fichas técnicas de los laboratorios. Confirmar siempre la presentación disponible en su servicio.</li>
+</ol></div>
+</div>
+
+<div class="warn"><b>Aviso:</b> apoyo clínico; verifique dosis, soluciones y concentraciones con su protocolo institucional y farmacia antes de ordenar o administrar. Las presentaciones son referencias comunes en Colombia: confirme la que tiene en su servicio.</div>
 </main>
+<footer>Herramienta de apoyo para personal de salud · No reemplaza el juicio clínico</footer>
 <script>
 const $=i=>document.getElementById(i);
 const f=(x,d=0)=>x.toLocaleString('es-CO',{maximumFractionDigits:d,minimumFractionDigits:d});
+const fx=x=>f(x,x>=100?0:x>=10?1:2);
 const R=Math.round;
-let P={};
 const num=id=>parseFloat(String($(id).value).replace(',','.'));
+/*PURE*/
 const hs=p=>p<=10?p*100:p<=20?1000+(p-10)*50:1500+(p-20)*20;
-function m1(){
- const p=num('peso'),e=num('edad'),t=num('talla');
- if(!(p>0)||!(e>=0)){$('o1').innerHTML='<div class="alert">Ingrese edad y peso válidos.</div>';return false}
- const u=$('uni').value;
- const dias=u==='d'?e:u==='m'?e*30.4375:e*365.25;
- const meses=dias/30.4375;
- const sc=t>0?Math.sqrt(p*t/3600):(p*4+7)/(p+90);
- const edadTxt=f(e,1)+(u==='d'?' días':u==='m'?' meses':' años');
- P={sexo:$('sexo').value,dias,meses,p,sc,edadTxt};
- $('o1').innerHTML='<div class="res">'+P.sexo+' · '+edadTxt+' · '+f(p,2)+' kg<br>Superficie corporal: <span class="big">'+f(sc,2)+' m²</span> <small>('+(t>0?'Mosteller':'(peso×4+7)/(peso+90)')+')</small></div>';
- return true}
-function m2(){
- const g=[...document.querySelectorAll('.g')].filter(x=>x.checked).length;
- const a=[...document.querySelectorAll('.a')].filter(x=>x.checked).length;
- let cat,col,sel;
- if(g>=2){cat='Deshidratación grave';col='#c00';sel=3}
- else if(a>=2){cat='Algún grado de deshidratación';col='#e0a800';sel=1}
- else{cat='Sin deshidratación';col='#2a9d4b';sel=0}
- const prev=$('dht')?parseInt($('dht').value):null;
- $('o2').innerHTML='<div class="res"><span class="pill" style="background:'+col+'">'+cat+'</span>'+
- '<label>Grado de DHT a usar en el cálculo</label><select id="dht">'+
- ['Sin DHT (solo basales)','DHT I (leve)','DHT II (moderada)','DHT III (grave)'].map((t,i)=>'<option value="'+i+'"'+(i===sel?' selected':'')+'>'+t+'</option>').join('')+
- '</select><small>La OMS agrupa I–II como "algún grado"; elija según su criterio clínico.</small></div>'}
-function soluciones(){
- const d=P.dias,m=P.meses;
- if(d<3)return {nom:'DAD 10 %',txt:'DAD 10 %',bolo:'solución salina 0,9 %'};
- if(d<=28)return {nom:'DAD 10 %',txt:'DAD 10 % 100 cc + Natrol 2 cc + Katrol 1 cc',bolo:'solución salina 0,9 %'};
- if(m<3)return {nom:'DAD 5 %',txt:'DAD 5 % 500 cc + Natrol 10 cc + Katrol 5 cc',bolo:'solución salina 0,9 %'};
- if(m<72)return {nom:'DAD 5 %',txt:'DAD 5 % 500 cc + Natrol 20 cc + Katrol 5 cc',bolo:'solución salina 0,9 %'};
- const s=$('sol6')?$('sol6').value:'Lactato de Ringer';
- return {nom:s,txt:s,bolo:s}}
-function m3(){
- if(!m1())return;
- if(!$('dht'))m2();
- const dht=parseInt($('dht').value),p=P.p,sc=P.sc;
+const scMost=(p,t)=>t>0?Math.sqrt(p*t/3600):(p*4+7)/(p+90);
+function calcLiq(p,sc,dht){
  const grande=p>30;
  const basalDia=grande?1500*sc:hs(p);
  const basalH=R(basalDia/24);
@@ -100,23 +162,243 @@ function m3(){
  const bolo=dht===3?R(20*p):0;
  const defRest=Math.max(defTot-bolo,0);
  const mitad=defRest/2,r8=R(mitad/8),r16=R(mitad/16);
- const v8=r8+basalH,v16=r16+basalH;
- const S=soluciones();
- const sel6=P.meses>=72?'<label>Solución (&gt;6 años)</label><select id="sol6" onchange="m3()"><option'+(S.nom==='Lactato de Ringer'?' selected':'')+'>Lactato de Ringer</option><option'+(S.nom==='SSN 0,9 %'?' selected':'')+'>SSN 0,9 %</option></select>':'';
+ return {grande,tabla,basalDia,basalH,defTot,bolo,defRest,mitad,r8,r16,v8:r8+basalH,v16:r16+basalH};}
+const r5=x=>Math.floor(x*2+0.5)/2;
+function tuboPed(meses,anios,p){
+ let sin,con=null,tab=true,nota='';
+ if(meses<=6){
+  if(p<1.5){sin=2.5;nota='Prematuro menor de 1.500 g'}
+  else if(p<2.5){sin=3.0;nota='Prematuro o bajo peso (1.500 g hasta término)'}
+  else{sin=3.5;con=3.0}
+ }else if(meses<18){sin=4.0;con=3.5}
+ else{tab=false;sin=anios/4+4;con=anios<2?anios/4+3:anios/4+3.5}
+ return {sin,con,tab,nota};}
+const toMg=(v,u)=>u==='mcg'?v/1000:u==='g'?v*1000:v;
+function convMl(cant,cu,tot,tu,vol){
+ const dMg=toMg(cant,cu),tMg=toMg(tot,tu);
+ if(!(dMg>0)||!(tMg>0)||!(vol>0))return null;
+ const conc=tMg/vol;
+ return {ml:dMg/conc,dMg,conc};}
+const DRUGS=[
+ {id:'fentanilo',n:'Fentanilo',step:1,u:'mcg',via:'IV lento',min:1,max:3,def:2,pres:[['50 mcg/mL (ampolla 100 mcg/2 mL o 500 mcg/10 mL)',50]],nota:'Atenúa la respuesta simpática a la laringoscopia. Administrar lento: riesgo de rigidez torácica. Cuidado en shock.',chk:true},
+ {id:'lidocaina',n:'Lidocaína',step:1,u:'mg',via:'IV en bolo',min:1,max:1.5,def:1,pres:[['2 % = 20 mg/mL (ampolla 5 o 10 mL)',20],['1 % = 10 mg/mL (ampolla 10 mL)',10]],nota:'Opcional; su beneficio es controvertido.'},
+ {id:'atropina',n:'Atropina',step:1,u:'mg',via:'IV en bolo',min:null,max:null,def:'',pres:[['1 mg/mL (ampolla 1 mL)',1]],nota:'Opcional, sobre todo en pediatría (reflejo vagal). Sus documentos no traen dosis: ingrese la de su protocolo.'},
+ {id:'etomidato',n:'Etomidato',step:2,u:'mg',via:'IV en bolo',min:0.1,max:0.3,def:0.3,pres:[['2 mg/mL (20 mg/10 mL)',2]],nota:'Elección en inestabilidad hemodinámica. Puede dar fasciculaciones o trismus.',chk:true},
+ {id:'ketamina',n:'Ketamina',step:2,u:'mg',via:'IV en bolo',min:1,max:2,def:1.5,pres:[['50 mg/mL (500 mg/10 mL)',50]],nota:'Broncodilatador (asma). Aumenta TA y PIC.'},
+ {id:'propofol',n:'Propofol',step:2,u:'mg',via:'IV en bolo',min:1,max:2,def:1.5,pres:[['1 % = 10 mg/mL (10, 20 o 100 mL)',10],['2 % = 20 mg/mL',20]],nota:'Produce hipotensión y depresión miocárdica; cuidado en inestabilidad. Emulsión: no diluir.',nodil:true},
+ {id:'midazolam',n:'Midazolam',step:2,u:'mg',via:'IV en bolo',min:0.1,max:0.2,def:0.1,pres:[['5 mg/mL (15 mg/3 mL)',5],['1 mg/mL (5 mg/5 mL) – verificar',1]],nota:'No se recomienda como único inductor.'},
+ {id:'succinilcolina',n:'Succinilcolina',step:3,u:'mg',via:'IV en bolo',min:1,max:1,def:1,pres:[['50 mg/mL (100 mg/2 mL) – verificar',50]],nota:'Evitar en hiperpotasemia, quemados, síndrome de aplastamiento y enfermedad renal. No repetir dosis.'},
+ {id:'rocuronio',n:'Rocuronio',step:3,u:'mg',via:'IV en bolo',min:1,max:1.2,def:1,pres:[['10 mg/mL (50 mg/5 mL)',10]],nota:'Alternativa a la succinilcolina; efecto más largo. Conservar en nevera (2–8 °C).',chk:true},
+ {id:'vecuronio',n:'Vecuronio',step:3,u:'mg',via:'IV en bolo',min:0.08,max:0.1,def:0.1,pres:[['10 mg/2,5 mL liofilizado (queda a 4 mg/mL)',4,'Reconstituir el frasco de 10 mg con 2,5 mL de agua para inyección (queda a 4 mg/mL)'],['4 mg/1 mL liofilizado (queda a 4 mg/mL)',4,'Reconstituir el frasco de 4 mg con 1 mL de agua para inyección (queda a 4 mg/mL)']],nota:'Inicio más lento (unos 2–3 minutos); efecto prolongado. Desechar lo no usado. Mantenimiento: 0,02–0,03 mg/kg.'}];
+function calcDroga(d,dose,conc,peso,ped){
+ if(!(dose>0))return {err:'Ingrese la dosis'};
+ if(!(conc>0))return {err:'Indique la concentración'};
+ let cant=dose*peso,cap=false;
+ if(ped&&d.id==='etomidato'&&cant>20){cant=20;cap=true}
+ const ml=cant/conc;
+ return {cant,ml,cap,dil:(ml>0&&ml<0.2)?ml*10:null,fuera:(d.min!==null&&(dose<d.min-1e-9||dose>d.max+1e-9))};}
+function ordenTxt(d,r,conc,prep,vf){
+ const fxx=x=>f(x,x>=100?0:x>=10?1:2);
+ const nom=d.n.toLowerCase()+' '+f(conc,Number.isInteger(conc)?0:2)+' '+d.u+'/mL';
+ let t=prep?prep+'. ':'';
+ if(vf>0&&r.ml<vf&&!d.nodil)t+='Cargar '+fxx(r.ml)+' mL de '+nom+' y completar con SSN 0,9 % hasta '+vf+' mL; pasar los '+vf+' mL '+d.via+' (equivale a '+fxx(r.cant)+' '+d.u+').';
+ else t+='Cargar '+fxx(r.ml)+' mL de '+nom+', sin diluir, y pasar '+d.via+' (equivale a '+fxx(r.cant)+' '+d.u+').';
+ return t}
+function tuboTxt(ped,sex,meses,anios,p){
+ if(!ped){const m=sex==='Masculino';return 'tubo orotraqueal con balón DI '+(m?'7,5–8,0':'7,0–7,5')+' mm, profundidad '+(m?'23':'21')+' cm a la comisura labial; tener disponible un tubo 0,5 mm menor'}
+ const t=tuboPed(meses,anios,p);
+ const o=x=>t.tab?f(x,1):(Math.floor(x*2)/2===Math.ceil(x*2)/2?f(x,1):f(Math.floor(x*2)/2,1)+' o '+f(Math.ceil(x*2)/2,1));
+ const d=x=>f(r5(x)*3,1);
+ let s='tubo orotraqueal sin balón DI '+o(t.sin)+' mm (profundidad ≈ '+d(t.sin)+' cm)';
+ if(t.con!==null)s+=' o con balón DI '+o(t.con)+' mm (profundidad ≈ '+d(t.con)+' cm)';
+ return s+'; tener disponible un tubo 0,5 mm menor y otro 0,5 mm mayor'}
+function planTxt(S,items,obs){
+ const fxx=x=>f(x,x>=100?0:x>=10?1:2);
+ let t='Plan rápido de intubación en secuencia (paciente '+S.sex.toLowerCase()+', '+S.edadTxt+', '+f(S.p,1)+' kg'+(obs?', '+obs:'')+'):\n';
+ t+='Preoxigenación: O2 al 100 % durante 3–5 minutos.\n';
+ items.forEach(x=>{t+=x.d.n+': '+fxx(x.dose)+' '+x.d.u+'/kg → '+fxx(x.r.cant)+' '+x.d.u+'. '+x.orden+'\n'});
+ const tm=[];
+ if(items.some(x=>x.d.id==='succinilcolina'))tm.push(['30–60 segundos','succinilcolina']);
+ if(items.some(x=>x.d.id==='rocuronio'))tm.push(['45–60 segundos','rocuronio']);
+ if(items.some(x=>x.d.id==='vecuronio'))tm.push(['2–3 minutos','vecuronio']);
+ if(tm.length===1)t+='Intubar a los '+tm[0][0]+' de administrado el relajante.\n';
+ else if(tm.length>1)t+='Tiempo de intubación tras el relajante: '+tm.map(a=>a[0]+' ('+a[1]+')').join('; ')+'.\n';
+ t+='Tubo: '+S.tubo+'.\n';
+ t+='Tener disponible plan de vía aérea difícil (dispositivo supraglótico y vía aérea quirúrgica); máximo 3 intentos de laringoscopia.\n';
+ t+=S.ped?'Ventilación suave con mascarilla antes de intubar; sin presión cricoidea de rutina.\n':'Sin presión cricoidea de rutina.\n';
+ t+='Confirmar posición con capnografía y auscultación bilateral.';
+ return t}
+const esPediatrico=anios=>anios<18;
+/*ENDPURE*/
+function ir(v){document.querySelectorAll('.view').forEach(x=>x.classList.remove('on'));$('v-'+v).classList.add('on');document.body.className='t-'+v;window.scrollTo(0,0)}
+function edadAnios(id,uid){const e=num(id),u=$(uid).value;return u==='a'?e:u==='m'?e/12:e/365.25}
+function fBas(){
+ const p=num('f1_p'),t=num('f1_t'),o=$('f1_o');
+ if(!(p>0)){o.innerHTML='';return}
+ const sc=scMost(p,t),h=hs(p),s=1500*sc;
+ o.innerHTML='<table><tr><td>Superficie corporal</td><td><b>'+f(sc,2)+' m²</b> <small>('+(t>0?'Mosteller':'sin talla')+')</small></td></tr>'+
+ '<tr><td>Holliday-Segar</td><td>'+f(h)+' cc/día → <b>'+R(h/24)+' cc/h</b></td></tr>'+
+ '<tr><td>1.500 × SCT</td><td>'+f(s)+' cc/día → <b>'+R(s/24)+' cc/h</b></td></tr></table>'+
+ '<small>'+(p>30?'Más de 30 kg: use 1.500 × SCT.':'30 kg o menos: use Holliday-Segar.')+'</small>'}
+function fDef(){
+ const p=num('f2_p'),t=num('f2_t'),d=parseInt($('f2_d').value),o=$('f2_o');
+ if(!(p>0)){o.innerHTML='';return}
+ const sc=scMost(p,t),c=calcLiq(p,sc,d);
+ let h='<table><tr><td>Déficit total</td><td><b>'+f(c.defTot)+' cc</b> ('+(c.grande?[500,1000,1500][d-1]+' × SCT '+f(sc,2):c.tabla[d-1]+' cc/kg')+')</td></tr>';
+ if(c.bolo)h+='<tr><td>Bolo 20 cc/kg</td><td><b>'+c.bolo+' cc</b> → déficit restante '+f(c.defRest)+' cc</td></tr>';
+ h+='<tr><td>Cada mitad</td><td>'+f(c.mitad)+' cc: una en 8 h ('+c.r8+' cc/h) y otra en 16 h ('+c.r16+' cc/h)</td></tr>'+
+ '<tr><td>Más basales ('+c.basalH+' cc/h)</td><td>8 h: <b>'+c.v8+' cc/h</b> · 16 h: <b>'+c.v16+' cc/h</b></td></tr></table>';
+ o.innerHTML=h}
+function fPeso(){
+ const e=num('f3_e'),o=$('f3_o');
+ if(!(e>=0)){o.innerHTML='';return}
+ o.innerHTML='<div class="res">Peso estimado: <span class="big">'+f(e*3+3,1)+' kg</span></div>'}
+function fTubo(){
+ const e=num('f4_e'),pp=num('f4_p'),o=$('f4_o');
+ if(!(e>=0)){o.innerHTML='';return}
+ const an=edadAnios('f4_e','f4_u'),p=pp>0?pp:3;
+ o.innerHTML=tuboHtml(tuboPed(an*12,an,p))+(pp>0?'':'<small>Sin peso: solo importa en menores de 6 meses (se asumió 3 kg).</small>')}
+function fConv(){
+ const c=num('f5_c'),t=num('f5_t'),v=num('f5_v'),o=$('f5_o');
+ const r=convMl(c,$('f5_cu').value,t,$('f5_tu').value,v);
+ if(!r){o.innerHTML='';return}
+ o.innerHTML='<div class="res">Cargar <span class="big">'+fx(r.ml)+' mL</span><br><small>Dosis '+fx(r.dMg)+' mg ('+fx(r.dMg*1000)+' mcg) · concentración '+fx(r.conc)+' mg/mL ('+fx(r.conc*1000)+' mcg/mL)</small></div>'+
+ (r.ml<0.2?'<div class="warn">Volumen muy pequeño: diluya 1 mL de la ampolla con 9 mL de SSN 0,9 % (1:10) y administre '+fx(r.ml*10)+' mL.</div>':'')}
+function tuboHtml(t){
+ const fmt=x=>t.tab?f(x,1)+' mm':f(x,2)+' mm → usar '+(Math.floor(x*2)/2===Math.ceil(x*2)/2?f(x,1):f(Math.floor(x*2)/2,1)+' o '+f(Math.ceil(x*2)/2,1))+' mm';
+ const dep=x=>f(r5(x)*3,1)+' cm';
+ let h='<table><tr><td>Sin balón (DI)</td><td><b>'+fmt(t.sin)+'</b><br><small>Profundidad ≈ '+dep(t.sin)+' (DI × 3)</small></td></tr>';
+ if(t.con!==null)h+='<tr><td>Con balón (DI)</td><td><b>'+fmt(t.con)+'</b><br><small>Profundidad ≈ '+dep(t.con)+' (DI × 3)</small></td></tr>';
+ if(t.nota)h+='<tr><td>Nota</td><td>'+t.nota+'</td></tr>';
+ h+='<tr><td>Reserva</td><td>Un tubo 0,5 mm menor y otro 0,5 mm mayor</td></tr></table><small>Confirme con visualización, auscultación bilateral y capnografía.</small>';
+ return h}
+let P={};
+function liq1(){
+ const e=num('edad'),t=num('talla'),p=num('peso'),u=$('uni').value;
+ if(!(p>0)||!(e>=0)){$('o1').innerHTML='<div class="alert">Ingrese edad y peso válidos.</div>';return false}
+ const dias=u==='d'?e:u==='m'?e*30.4375:e*365.25;
+ const meses=dias/30.4375;
+ const sc=scMost(p,t);
+ const edadTxt=f(e,1)+(u==='d'?' días':u==='m'?' meses':' años');
+ P={sexo:$('sexo').value,dias,meses,p,sc,edadTxt};
+ $('o1').innerHTML='<div class="res">'+P.sexo+' · '+edadTxt+' · '+f(p,2)+' kg<br>Superficie corporal: <span class="big">'+f(sc,2)+' m²</span> <small>('+(t>0?'Mosteller':'(peso×4+7)/(peso+90)')+')</small></div>';
+ return true}
+function liq2(){
+ const g=[...document.querySelectorAll('.g')].filter(x=>x.checked).length;
+ const a=[...document.querySelectorAll('.a')].filter(x=>x.checked).length;
+ let cat,col,sel;
+ if(g>=2){cat='Deshidratación grave';col='#c62828';sel=3}
+ else if(a>=2){cat='Algún grado de deshidratación';col='#e08a00';sel=1}
+ else{cat='Sin deshidratación';col='#2a9d4b';sel=0}
+ $('o2').innerHTML='<div class="res"><span class="pill" style="background:'+col+'">'+cat+'</span>'+
+ '<label>Grado de DHT a usar en el cálculo</label><select id="dht">'+
+ ['Sin DHT (solo basales)','DHT I (leve)','DHT II (moderada)','DHT III (grave)'].map((t,i)=>'<option value="'+i+'"'+(i===sel?' selected':'')+'>'+t+'</option>').join('')+
+ '</select><small>La OMS agrupa I–II como "algún grado"; elija según su criterio clínico.</small></div>'}
+function liqSol(){
+ const d=P.dias,m=P.meses;
+ if(d<3)return {nom:'DAD 10 %',txt:'DAD 10 %',bolo:'solución salina 0,9 %'};
+ if(d<=28)return {nom:'DAD 10 %',txt:'DAD 10 % 100 cc + Natrol 2 cc + Katrol 1 cc',bolo:'solución salina 0,9 %'};
+ if(m<3)return {nom:'DAD 5 %',txt:'DAD 5 % 500 cc + Natrol 10 cc + Katrol 5 cc',bolo:'solución salina 0,9 %'};
+ if(m<72)return {nom:'DAD 5 %',txt:'DAD 5 % 500 cc + Natrol 20 cc + Katrol 5 cc',bolo:'solución salina 0,9 %'};
+ const s=$('sol6')?$('sol6').value:'Lactato de Ringer';
+ return {nom:s,txt:s,bolo:s}}
+function liq3(){
+ if(!liq1())return;
+ if(!$('dht'))liq2();
+ const dht=parseInt($('dht').value),p=P.p,sc=P.sc;
+ const c=calcLiq(p,sc,dht);
+ const S=liqSol();
+ const sel6=P.meses>=72?'<label>Solución (&gt;6 años)</label><select id="sol6" onchange="liq3()"><option'+(S.nom==='Lactato de Ringer'?' selected':'')+'>Lactato de Ringer</option><option'+(S.nom==='SSN 0,9 %'?' selected':'')+'>SSN 0,9 %</option></select>':'';
  let h=sel6+'<div class="res"><b>'+P.sexo+', '+P.edadTxt+', '+f(p,2)+' kg, SC '+f(sc,2)+' m²</b></div>';
- h+='<h4>Cálculo</h4><table><tr><td>Basales ('+(grande?'1.500 × SC':'Holliday-Segar')+')</td><td>'+f(basalDia)+' cc/día → <b>'+basalH+' cc/h</b></td></tr>';
+ h+='<h4>Cálculo</h4><table><tr><td>Basales ('+(c.grande?'1.500 × SC':'Holliday-Segar')+')</td><td>'+f(c.basalDia)+' cc/día → <b>'+c.basalH+' cc/h</b></td></tr>';
  if(dht>0){
-  h+='<tr><td>Déficit total ('+(grande?[500,1000,1500][dht-1]+' × SC':tabla[dht-1]+' cc/kg')+')</td><td><b>'+f(defTot)+' cc</b></td></tr>';
-  if(bolo)h+='<tr><td>Bolo (20 cc/kg)</td><td><b>'+bolo+' cc</b> → déficit restante '+f(defRest)+' cc</td></tr>';
-  h+='<tr><td>Déficit ÷ 2</td><td>'+f(mitad)+' cc en 8 h (<b>'+r8+'</b> cc/h) y '+f(mitad)+' cc en 16 h (<b>'+r16+'</b> cc/h)</td></tr>'+
-  '<tr><td>Basal + déficit</td><td>Primeras 8 h: <b>'+v8+' cc/h</b> · Siguientes 16 h: <b>'+v16+' cc/h</b></td></tr>'}
+  h+='<tr><td>Déficit total ('+(c.grande?[500,1000,1500][dht-1]+' × SC':c.tabla[dht-1]+' cc/kg')+')</td><td><b>'+f(c.defTot)+' cc</b></td></tr>';
+  if(c.bolo)h+='<tr><td>Bolo (20 cc/kg)</td><td><b>'+c.bolo+' cc</b> → déficit restante '+f(c.defRest)+' cc</td></tr>';
+  h+='<tr><td>Déficit ÷ 2</td><td>'+f(c.mitad)+' cc en 8 h (<b>'+c.r8+'</b> cc/h) y '+f(c.mitad)+' cc en 16 h (<b>'+c.r16+'</b> cc/h)</td></tr>'+
+  '<tr><td>Basal + déficit</td><td>Primeras 8 h: <b>'+c.v8+' cc/h</b> · Siguientes 16 h: <b>'+c.v16+' cc/h</b></td></tr>'}
  h+='</table>';
- const ini=bolo?'Administrar bolo de '+bolo+' cc de '+S.bolo+' y posteriormente iniciar infusión de ':'Administrar infusión de ';
- let plan=dht===0?'Administrar infusión de '+S.txt+' a razón de '+basalH+' cc/hora (líquidos basales).':ini+S.txt+' a razón de '+v8+' cc/hora las primeras 8 horas y luego continuar a '+v16+' cc/hora las 16 horas restantes.';
+ const ini=c.bolo?'Administrar bolo de '+c.bolo+' cc de '+S.bolo+' y posteriormente iniciar infusión de ':'Administrar infusión de ';
+ let plan=dht===0?'Administrar infusión de '+S.txt+' a razón de '+c.basalH+' cc/hora (líquidos basales).':ini+S.txt+' a razón de '+c.v8+' cc/hora las primeras 8 horas y luego continuar a '+c.v16+' cc/hora las 16 horas restantes.';
  if(P.dias<=28)plan+=' Paciente neonato: vigilar glucometría y balance hídrico.';
  h+='<h4>Plan (copiar y pegar)</h4><textarea id="plan">'+plan+'</textarea><button type="button" onclick="cp()">Copiar plan</button>';
  if(P.dias<=28)h+='<div class="alert">Neonato: ajuste individualmente la tabla de déficit y los volúmenes.</div>';
  $('o3').innerHTML=h}
 function cp(){const t=$('plan');t.select();try{navigator.clipboard.writeText(t.value)}catch(e){document.execCommand('copy')}}
-window.addEventListener('load',()=>{$('js').style.display='none';m2()});
+let S={};
+const PASOS={1:'Paso 1 · Premedicación (3–5 min antes de la laringoscopia)',2:'Paso 2 · Inducción (elija un sedante)',3:'Paso 3 · Relajación muscular (elija uno; con el paciente ya dormido)'};
+function drugsHtml(){
+ let h='';
+ [1,2,3].forEach(s=>{
+  h+='<h4>'+PASOS[s]+'</h4>';
+  DRUGS.forEach((d,i)=>{ if(d.step!==s)return;
+   const rg=d.min===null?'sin rango en sus documentos':(d.min===d.max?f(d.min,2):f(d.min,2)+'–'+f(d.max,2))+' '+d.u+'/kg';
+   h+='<div class="drug"><label class="chk"><input type="checkbox" id="k_'+i+'" onchange="sirUpd()"'+(d.chk?' checked':'')+'> <b>'+d.n+'</b></label>'+
+   '<div class="row"><div><label>Dosis ('+d.u+'/kg)</label><input id="d_'+i+'" type="number" step="any" inputmode="decimal" value="'+d.def+'" oninput="sirUpd()"><small>Rango de referencia: '+rg+'</small></div>'+
+   '<div><label>Presentación</label><select id="s_'+i+'" onchange="sirUpd()">'+d.pres.map((p,j)=>'<option value="'+j+'">'+p[0]+'</option>').join('')+'<option value="x">Otra concentración…</option></select>'+
+   '<input id="c_'+i+'" type="number" step="any" inputmode="decimal" placeholder="'+d.u+' por mL" style="display:none;margin-top:6px" oninput="sirUpd()">'+
+   (d.nodil?'':'<label>Jeringa para enfermería</label><select id="v_'+i+'" onchange="sirUpd()"><option value="0">Sin diluir</option><option value="5">Diluir hasta 5 mL</option><option value="10">Diluir hasta 10 mL</option></select>')+
+   '</div></div>'+
+   '<div class="res" id="r_'+i+'"></div><small>'+d.nota+'</small></div>'});
+ });
+ return h}
+function sirCopy(){const t=$('s_plan');t.select();try{navigator.clipboard.writeText(t.value)}catch(e){document.execCommand('copy')}}
+function sirUpd(){
+ const items=[];
+ DRUGS.forEach((d,i)=>{
+  const sel=$('s_'+i).value;
+  $('c_'+i).style.display=sel==='x'?'block':'none';
+  const conc=sel==='x'?num('c_'+i):d.pres[parseInt(sel)][1];
+  const prep=sel==='x'?'':(d.pres[parseInt(sel)][2]||'');
+  const vf=$('v_'+i)?parseFloat($('v_'+i).value):0;
+  const r=calcDroga(d,num('d_'+i),conc,S.p,S.ped);
+  const box=$('r_'+i);
+  if(r.err){box.innerHTML='<small>'+r.err+'</small>';return}
+  r.orden=ordenTxt(d,r,conc,prep,vf);
+  box.innerHTML='Dosis: <b>'+fx(r.cant)+' '+d.u+'</b>'+(r.cap?' (limitado a 20 mg)':'')+' → <span class="ml">'+fx(r.ml)+' mL</span>'+
+   '<div class="ord"><b>Orden para enfermería:</b> '+r.orden+'</div>'+
+   (r.dil&&vf===0&&!d.nodil?'<small>Volumen muy pequeño: conviene diluir (elija "Diluir hasta 5 mL").</small><br>':'')+
+   (vf>0&&r.ml>=vf&&!d.nodil?'<small style="color:#b00">El volumen supera '+vf+' mL: se deja sin diluir.</small><br>':'')+
+   (r.fuera?'<small style="color:#b00">Dosis fuera del rango de referencia.</small>':'');
+  if($('k_'+i).checked)items.push({d,r,orden:r.orden,step:d.step,dose:num('d_'+i)});
+ });
+ let h='';
+ if(items.length){
+  h='<h3>Órdenes para enfermería, en este orden</h3><ol>'+items.map(x=>'<li><b>'+x.d.n+':</b> '+fx(x.r.cant)+' '+x.d.u+' = <span class="ml">'+fx(x.r.ml)+' mL</span><div class="ord">'+x.orden+'</div></li>').join('')+'</ol><small>Lave la vía con SSN 0,9 % entre fármacos. Marque o desmarque para armar su secuencia.</small>';
+ }else h='<small>Marque los fármacos que usará para ver las órdenes.</small>';
+ $('s_sum').innerHTML=h;
+ if(!S.edit&&$('s_plan'))$('s_plan').value=planTxt(S,items,($('s_obs').value||'').trim())}
+function sir(){
+ const e=num('s_edad'),p=num('s_peso'),u=$('s_uni').value,sex=$('s_sexo').value;
+ const o=$('s_out');
+ if(!(p>0)||!(e>=0)){o.innerHTML='<div class="alert">Ingrese edad y peso válidos.</div>';return}
+ const anios=u==='a'?e:u==='m'?e/12:e/365.25;
+ const meses=anios*12;
+ const ped=esPediatrico(anios);
+ const edadTxt=f(e,1)+(u==='d'?' días':u==='m'?' meses':' años');
+ S={p,ped,sex,edadTxt,edit:false,tubo:tuboTxt(ped,sex,meses,anios,p)};
+ let h='<div class="res"><span class="pill" style="background:'+(ped?'#e08a00':'#12355b')+'">'+(ped?'PACIENTE PEDIÁTRICO':'PACIENTE ADULTO')+'</span><br>'+sex+' · '+edadTxt+' · '+f(p,1)+' kg<br><small>Pediátrico: menor de 18 años. Adulto: 18 años o más.</small></div>';
+ h+='<h4>Tubo orotraqueal</h4>';
+ if(!ped){
+  const m=sex==='Masculino';
+  h+='<table><tr><td>Con balón (DI)</td><td><b>'+(m?'7,5–8,0':'7,0–7,5')+' mm</b></td></tr>'+
+  '<tr><td>Profundidad</td><td><b>'+(m?'23':'21')+' cm</b> a la comisura labial</td></tr>'+
+  '<tr><td>Reserva</td><td>Un tubo 0,5 mm menor</td></tr>'+
+  '<tr><td>Laringoscopio</td><td>Macintosh 3–4 (curva) o Miller 2–3 (recta)</td></tr></table><small>Confirme con visualización, auscultación bilateral y capnografía.</small>';
+ }else h+=tuboHtml(tuboPed(meses,anios,p));
+ h+='<h4>Fármacos en orden y mL a cargar</h4><small>Puede cambiar la dosis, la presentación y la dilución de cada fármaco; los mL y la orden para enfermería se recalculan solos.</small>';
+ h+='<div id="s_sum" class="res"></div>'+drugsHtml();
+ h+='<h4>Plan para la nota (copiar y pegar)</h4><label>Observaciones del paciente (opcional)</label><input id="s_obs" type="text" placeholder="Ej.: parálisis cerebral, asma, sospecha de vía aérea difícil" oninput="S.edit=false;sirUpd()"><textarea id="s_plan" style="margin-top:8px" oninput="S.edit=true"></textarea><button type="button" onclick="sirCopy()">Copiar plan</button><button type="button" class="back" style="margin-top:8px" onclick="S.edit=false;sirUpd()">Regenerar plan con los datos actuales</button><small>El texto se actualiza solo al cambiar dosis, presentación o fármacos. Si lo edita a mano, pulse "Regenerar" para volver al texto automático.</small>';
+ h+='<h4>Etapas de la secuencia</h4><ol>'+
+ '<li><b>Preparación:</b> material, monitorización (TA, SpO2, ECG, capnografía), acceso venoso, plan B y C para vía aérea difícil.</li>'+
+ '<li><b>Preoxigenación:</b> O2 al 100 % durante 3–5 minutos.</li>'+
+ '<li><b>Premedicación:</b> 3–5 minutos antes de la laringoscopia.</li>'+
+ '<li><b>Posición:</b> olfateo; en obesos, rampa (cabecera elevada 25–30°).</li>'+
+ '<li><b>Inducción y relajación:</b> sedante y luego relajante muscular.</li>'+
+ '<li><b>Intubación:</b> máximo 3 intentos; confirmar con capnografía.</li>'+
+ '<li><b>Cuidados posintubación:</b> ventilación protectora (6 mL/kg de peso ideal) y sedoanalgesia.</li></ol>';
+ if(ped)h+='<div class="warn">En pediatría se recomienda la secuencia controlada: ventilación suave con mascarilla antes de intubar, sin presión cricoidea de rutina y con rocuronio como relajante.</div>';
+ else h+='<div class="warn">No se recomienda la presión cricoidea de rutina.</div>';
+ o.innerHTML=h;
+ sirUpd()}
+window.addEventListener('load',()=>{$('js').style.display='none';liq2()});
 </script></body></html>
