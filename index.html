@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Herramientas clínicas · Urgencias</title>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Galenio · La guía clínica del médico general</title>
 <style>
 :root{--c:#12355b;--c2:#0e7c86;--ink:#16293b;--mut:#51667a;--line:#d9e4ec;--bg:#eaf1f6}
 body.t-home{--c:#12355b;--c2:#0e7c86}
@@ -44,19 +44,81 @@ tr:nth-child(even) td{background:#f6fafd}th{background:#eef4f9;color:var(--c)}
 .refs{font-size:.88em;color:#345}.refs li{margin-bottom:6px}
 small{color:var(--mut)}.out{margin-top:8px}
 footer{text-align:center;color:var(--mut);font-size:.8em;padding:6px 14px 22px}
-</style></head><body class="t-home">
-<header>
-<div class="logo"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z"/></svg></div>
-<h2>Herramientas clínicas</h2><span class="sub">Urgencias · Pediatría · Atención primaria</span>
-<svg class="ecg" viewBox="0 0 400 30" preserveAspectRatio="none"><path d="M0 18 H110 L125 18 L135 4 L148 27 L158 14 L168 18 H260 L275 18 L285 6 L298 26 L308 15 L318 18 H400" fill="none" stroke="#fff" stroke-width="2"/></svg>
-</header>
-<main>
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="galenio.css">
+</head><body>
+<div class="gx-header">
+<a class="gx-brand" href="#" data-nav="home" aria-label="Galenio, inicio">
+<img src="galenio-logo.svg" alt="" width="44" height="38">
+<span><b>Galenio</b><small>La guía clínica del médico general.</small></span>
+</a>
+<nav class="gx-topnav" aria-label="Principal">
+<button type="button" data-nav="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 11L12 3.5 20.5 11"/><path d="M5.5 9.5V20h4.5v-5.5h4V20h4.5V9.5"/></svg>Inicio</button>
+<button type="button" data-nav="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>Buscar</button>
+<button type="button" data-nav="saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.5l-5.5 4z"/></svg>Guardados</button>
+</nav>
+<button type="button" class="gx-menu-btn" id="gx-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="gx-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+<div class="gx-menu" id="gx-menu" hidden>
+<button type="button" data-open="dosispro">DosisPro</button>
+<button type="button" data-open="liquidos">Líquidos pediátricos</button>
+<button type="button" data-open="sir">Secuencia de intubación</button>
+<button type="button" data-open="formulas">Fórmulas médicas</button>
+<button type="button" data-nav="saved">Guardados</button>
+</div>
+</div>
+<main class="gx-main" id="contenido">
 <noscript><div class="alert">JavaScript está desactivado. Abra el archivo en Chrome o Safari.</div></noscript>
 <div class="warn" id="js">Si este aviso no desaparece, JavaScript no está corriendo: abra el enlace en Chrome/Safari (no desde la vista previa de WhatsApp o Drive).</div>
+
 <div class="view on" id="v-home">
-<button class="tile t1" type="button" onclick="ir('formulas')"><div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="5" y="3" width="14" height="18" rx="2"/><rect x="8" y="6" width="8" height="3"/><path d="M8 13h1M12 13h1M16 13h0M8 17h1M12 17h1M16 17h0" stroke-linecap="round" stroke-width="2.2"/></svg></div><div><b>1. Fórmulas pediátricas</b><span>Calculadoras interactivas: basales, déficit, peso estimado, tubo y conversión de mcg/mg a mL.</span></div></button>
-<button class="tile t2" type="button" onclick="ir('liquidos')"><div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.5C12 2.5 5.5 10 5.5 14.5a6.5 6.5 0 0013 0C18.5 10 12 2.5 12 2.5z"/></svg></div><div><b>2. Líquidos basales y deshidratación</b><span>Clasificación OMS y plan para copiar y pegar.</span></div></button>
-<button class="tile t3" type="button" onclick="ir('sir')"><div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v8"/><path d="M12 11c-1-1.5-3-3-5-3-2 0-3 3-3 7 0 3 1 5 3 5 2 0 4-1 5-4"/><path d="M12 11c1-1.5 3-3 5-3 2 0 3 3 3 7 0 3-1 5-3 5-2 0-4-1-5-4"/></svg></div><div><b>3. Secuencia de intubación rápida</b><span>Adulto o pediátrico: tubo, fármacos en orden, órdenes en mL para enfermería y plan para la nota.</span></div></button>
+<h1 class="gx-title">¿Qué necesitas consultar?</h1>
+<p class="gx-lead">Herramientas para tu práctica clínica</p>
+<div class="gx-search" role="search">
+<label for="gx-q" class="gx-sr">Buscar medicamento o guía</label>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+<input id="gx-q" type="search" placeholder="Buscar medicamento o guía" autocomplete="off" enterkeyhint="search" aria-controls="gx-res">
+</div>
+<p class="gx-status" id="gx-status" role="status" aria-live="polite"></p>
+<ul class="gx-results" id="gx-res"></ul>
+
+<h2 class="gx-sec">Accesos rápidos</h2>
+<ul class="gx-grid">
+<li><button type="button" class="gx-card" data-open="dosispro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="8.2" width="19" height="7.6" rx="3.8" transform="rotate(-45 12 12)"/><path d="M9.2 9.2l5.6 5.6"/></svg><span>DosisPro</span></button></li>
+<li><button type="button" class="gx-card" data-open="liquidos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M10 2.5h3v2.2h-3z"/><path d="M9 4.7h5l.3 2.3a4 4 0 012 3.4v8.3a2.6 2.6 0 01-2.6 2.6h-3.4A2.6 2.6 0 018 18.7v-8.3A4 4 0 0110 7z"/><path d="M8 12h3M8 15h3"/></svg><span>Líquidos pediátricos</span></button></li>
+<li><button type="button" class="gx-card" data-open="sir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 21c0-3-3.5-4.2-3.5-8.3C5.5 7.8 8 4 12 4c3 0 5 2 5 4.6l1.5 2.4-1.5.8v2l-1 .7"/><path d="M12 21v-4.5c0-1 .8-1.7 1.8-1.7 1 0 1.6.5 1.6 1.3"/><path d="M13 9.5h.01"/></svg><span>Secuencia de intubación</span></button></li>
+<li><button type="button" class="gx-card" data-open="formulas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 2.8h8.5L19 7.3V20a1.4 1.4 0 01-1.4 1.4H6A1.4 1.4 0 014.6 20V4.2A1.4 1.4 0 016 2.8z"/><path d="M14 3v4.5h4.8M8 12h8M8 15.5h8M8 19h5"/></svg><span>Fórmulas médicas</span></button></li>
+</ul>
+
+<h2 class="gx-sec">Especialidades</h2>
+<ul class="gx-list">
+<li><button type="button" class="gx-row" data-open="esp-urgencias"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12h4l2.5-6 4 12 2.5-6H21"/></svg><span class="tx">Urgencias</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button></li>
+<li><button type="button" class="gx-row" data-open="esp-interna"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-7.5-10A4.3 4.3 0 0112 7.8a4.3 4.3 0 017.5 2.7c0 5.4-7.5 10-7.5 10z"/></svg><span class="tx">Medicina Interna</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button></li>
+<li><button type="button" class="gx-row" data-open="esp-gineco"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="9" r="5"/><path d="M12 14v7M9 18h6"/></svg><span class="tx">Ginecología y Obstetricia</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button></li>
+<li><button type="button" class="gx-row" data-open="esp-cirugia"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.5 3.5l6 6-9 9-6-6zM6 18l-2.5 2.5M12 7l5 5"/></svg><span class="tx">Cirugía General</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button></li>
+<li><button type="button" class="gx-row" data-open="esp-pediatria"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="7.5" r="3.5"/><path d="M5.5 21v-2a6.5 6.5 0 0113 0v2"/></svg><span class="tx">Pediatría</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button></li>
+</ul>
+</div>
+
+<div class="view" id="v-dosispro">
+<button class="back" type="button" onclick="ir('home')">← Volver al inicio</button>
+<h2 class="gx-vtitle">DosisPro</h2>
+<div class="gx-note"><b>Módulo en preparación</b>Todavía no hay contenido disponible en este acceso.</div>
+</div>
+
+<div class="view" id="v-esp">
+<button class="back" type="button" onclick="ir('home')">← Volver al inicio</button>
+<h2 class="gx-vtitle" id="esp-title"></h2>
+<div class="gx-note"><b>Contenido en preparación</b><span id="esp-txt">Esta especialidad aún no tiene módulos disponibles.</span></div>
+<ul class="gx-list" id="esp-links" style="margin-top:16px"></ul>
+</div>
+
+<div class="view" id="v-saved">
+<button class="back" type="button" onclick="ir('home')">← Volver al inicio</button>
+<h2 class="gx-vtitle">Guardados</h2>
+<div id="saved-body"></div>
 </div>
 
 <div class="view" id="v-formulas">
@@ -144,6 +206,13 @@ footer{text-align:center;color:var(--mut);font-size:.8em;padding:6px 14px 22px}
 <div class="warn"><b>Aviso:</b> apoyo clínico; verifique dosis, soluciones y concentraciones con su protocolo institucional y farmacia antes de ordenar o administrar. Las presentaciones son referencias comunes en Colombia: confirme la que tiene en su servicio.</div>
 </main>
 <footer>Herramienta de apoyo para personal de salud · No reemplaza el juicio clínico</footer>
+<nav class="gx-nav" aria-label="Principal">
+<ul>
+<li><button type="button" data-nav="home" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 11L12 3.5 20.5 11"/><path d="M5.5 9.5V20h4.5v-5.5h4V20h4.5V9.5"/></svg><span>Inicio</span></button></li>
+<li><button type="button" data-nav="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg><span>Buscar</span></button></li>
+<li><button type="button" data-nav="saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.5l-5.5 4z"/></svg><span>Guardados</span></button></li>
+</ul>
+</nav>
 <script>
 const $=i=>document.getElementById(i);
 const f=(x,d=0)=>x.toLocaleString('es-CO',{maximumFractionDigits:d,minimumFractionDigits:d});
@@ -401,4 +470,6 @@ function sir(){
  o.innerHTML=h;
  sirUpd()}
 window.addEventListener('load',()=>{$('js').style.display='none';liq2()});
-</script></body></html>
+</script>
+<script src="galenio.js"></script>
+</body></html>
