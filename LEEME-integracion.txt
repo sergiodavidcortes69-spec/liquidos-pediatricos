@@ -1,0 +1,21 @@
+# Galenio · cómo integrar (sin tocar el <script> original)
+
+Archivos nuevos en la raíz del repo, junto a index.html: galenio.css, galenio.js, galenio-logo.svg, galenio-fragmentos.html
+
+Cambios en index.html (4 ediciones):
+
+1. <title> -> Galenio · La guía clínica del médico general
+   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+2. Justo después de </style> (antes de </head>) agregar:
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap">
+   <link rel="stylesheet" href="galenio.css">
+
+3. Reemplazar desde <body class="t-home"> hasta el </div> que cierra <div class="view on" id="v-home"> (incluye <header>, <main>, noscript, aviso #js y las 3 tiles)
+   por el bloque principal de galenio-fragmentos.html (hasta "FIN vistas nuevas").
+   Las vistas v-formulas, v-liquidos y v-sir quedan intactas.
+
+4. Después de </footer> y ANTES del <script> original: pegar el <nav class="gx-nav"> de galenio-fragmentos.html.
+   Después del cierre </script> original (antes de </body>): <script src="galenio.js"></script>
