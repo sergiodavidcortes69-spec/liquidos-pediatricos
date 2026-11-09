@@ -46,7 +46,7 @@ function openEsp(id){
     b.firstChild.textContent=name(m);li.appendChild(b);ul.appendChild(li)});
   byId('v-esp').setAttribute('data-id',id);
 }
-function openId(id){ if(id.indexOf('esp-')===0)show(id); else show(VIEW_ID[id]||id) }
+function openId(id){ if(id==='dosispro'){window.location.href='dosispro.html';return} if(id.indexOf('esp-')===0)show(id); else show(VIEW_ID[id]||id) }
 document.addEventListener('click',function(e){
   var o=e.target.closest('[data-open]'); if(o){e.preventDefault();openId(o.getAttribute('data-open'));return}
   var n=e.target.closest('[data-nav]'); if(n){e.preventDefault();var k=n.getAttribute('data-nav');
