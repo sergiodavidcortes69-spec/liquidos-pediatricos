@@ -22,6 +22,7 @@
 <div class="out" id="outZ" role="status" aria-live="polite">Ingrese la edad en meses.</div></section>
 <section id="za" hidden><p>Pauta de diarrea definida solo para pediatría. Referencia de adultos pendiente de completar y validar.</p></section>
 <details open><summary>Seguridad y fuentes</summary><p>Presentación: solución oral de zinc elemental 2 mg/mL, frasco de 80 mL (SulZinc, Ziped, ZinKids). Confirmar concentración en la etiqueta del producto disponible.</p><p>Fuente: documento de dosis pediátricas aportado, p. 394–395. Duración de 10–14 días en la fuente; este módulo usa 14 días.</p></details></div>
+<div id="resp"></div>
 <p><small>Esta tanda no modifica los módulos clínicos actuales.</small></p></main>
 <script>
 const $=id=>document.getElementById(id),F=x=>x.toLocaleString('es-CO',{maximumFractionDigits:3});
@@ -33,4 +34,4 @@ function calcV(){const a=$('age').value===''?NaN:Number($('age').value),r=comput
 function computeZ(m){if(!Number.isFinite(m)||m<0)return {error:'Ingrese la edad en meses.'};const ml=m<=6?2.5:5;return {ml:ml,mg:ml*2}}
 function calcZ(){const v=$('zm').value,r=computeZ(v===''?NaN:Number(v));if(r.error){$('outZ').textContent=r.error;return}$('outZ').innerHTML='<p>Administrar '+F(r.ml)+' mL ('+F(r.mg)+' mg de zinc elemental) vía oral cada 12 horas por 14 días.</p><p>Total diario: '+F(r.mg*2)+' mg de zinc elemental.</p>'}
 if(typeof module!=='undefined')module.exports={computeV,computeZ};
-</script></body></html>
+</script><script src="dosispro-resp.js"></script></body></html>
