@@ -26,51 +26,57 @@ trimetoprim:['160/800 mg (TMP/SMX) VO cada 12 h (NAC con factores de riesgo; aju
 const S=(k,l,d,n,o)=>Object.assign({k:k,l:l,d:d,n:n,u:'mg'},o||{});
 const D=[
 {id:'amoxicilina',n:'Amoxicilina',alias:'penicilina aminopenicilina otitis neumonia faringitis amoxil',rel:['amoxiclav','ampicilina','cefalexina'],
- sc:[S('a','Más de 3 meses: ITRS/ITU, hasta 50 mg/kg/día c/8 h',50,3,{minM:3}),S('b','Menos de 3 meses: 30 mg/kg/día c/12 h',30,2,{minM:1,maxM:3}),S('c','NAC: hasta 100 mg/kg/día c/8 h',100,3,{minM:3}),S('d','OMA recurrente: hasta 90 mg/kg/día c/8–12 h, 7–10 días',90,3,{minM:3})],pres:[],note:'Sin máximo diario en la fuente: verificar.'},
+ sc:[S('a','Más de 3 meses: ITRS/ITU, hasta 50 mg/kg/día c/8 h',50,3,{minM:3}),S('b','Menos de 3 meses: 30 mg/kg/día c/12 h',30,2,{minM:1,maxM:3}),S('c','NAC: hasta 100 mg/kg/día c/8 h',100,3,{minM:3}),S('d','OMA recurrente: hasta 90 mg/kg/día c/8–12 h, 7–10 días',90,3,{minM:3})],pres:[['125 mg por 5 mL',25],['250 mg por 5 mL',50]],tabs:[[500,false,'500 mg']],pt:'suspensión de 125 y 250 mg/5 mL; cápsulas o tabletas de 500 mg.',note:'Sin máximo diario en la fuente: verificar.'},
 {id:'amoxiclav',n:'Amoxicilina/ácido clavulánico',alias:'augmentin clavulin sinusitis otitis',rel:['amoxicilina','cefalexina'],max:3000,
  sc:[S('a','Estándar del proyecto: 50 mg/kg/día c/12 h',50,2),S('b','ITRS/ITU: hasta 50 mg/kg/día c/8–12 h',50,3),S('c','Sinusitis/OMA/bronquitis: 40 mg/kg/día c/8–12 h, 10–14 días',40,3),S('d','OMA recurrente: 90 mg/kg/día c/12 h, 10 días',90,2)],
- pres:[['125/31,25 mg por 5 mL',25],['250/62,5 mg por 5 mL',50],['400/57 mg por 5 mL',80],['600/42,9 mg por 5 mL (ES)',120]],note:'Dosis expresada como amoxicilina. Máximo 3 g/día (criterio del proyecto). Sin gotas. Verificar la concentración del frasco.'},
+ pres:[['125/31,25 mg por 5 mL',25],['250/62,5 mg por 5 mL',50],['400/57 mg por 5 mL',80],['600/42,9 mg por 5 mL (ES)',120]],tabs:[[500,true,'500/125 mg'],[875,true,'875/125 mg']],pt:'suspensión de 125/31,25, 250/62,5, 400/57 y 600/42,9 mg/5 mL; tabletas de 500/125 y 875/125 mg; vial IV de 1.000/200 mg.',note:'Dosis expresada como amoxicilina. Máximo 3 g/día (criterio del proyecto). Sin gotas. Verificar la concentración del frasco.'},
 {id:'ampicilina',n:'Ampicilina',alias:'penicilina meningitis sepsis',rel:['ampisulbactam','gentamicina','penicilinag'],
- sc:[S('a','General (proyecto): 200 mg/kg/día c/6 h',200,4,{minM:1}),S('b','Sepsis: hasta 300 mg/kg/día c/6 h IV',300,4,{minM:1}),S('c','Meningitis: hasta 400 mg/kg/día c/6 h IV',400,4,{minM:1})],pres:[],note:'Solo mayores de 28 días.'},
+ sc:[S('a','General (proyecto): 200 mg/kg/día c/6 h',200,4,{minM:1}),S('b','Sepsis: hasta 300 mg/kg/día c/6 h IV',300,4,{minM:1}),S('c','Meningitis: hasta 400 mg/kg/día c/6 h IV',400,4,{minM:1})],pres:[],pt:'ampolla IV de 500 mg y 1 g.',note:'Solo mayores de 28 días.'},
 {id:'ampisulbactam',n:'Ampicilina/sulbactam (IV–IM)',alias:'unasyn sulbactam',rel:['ampicilina','ceftriaxona'],
- sc:[S('a','Infección leve: hasta 100 mg/kg/día c/6 h',100,4,{minM:1}),S('b','Infección moderada: hasta 200 mg/kg/día c/6 h',200,4,{minM:1}),S('c','Infección grave o meningitis: hasta 300 mg/kg/día c/6 h',300,4,{minM:1})],pres:[],note:'La fuente no aclara si los mg/kg son de ampicilina o de la combinación: se usa el valor tal como está escrito. Solo vía parenteral.'},
+ sc:[S('a','Infección leve: hasta 100 mg/kg/día c/6 h',100,4,{minM:1}),S('b','Infección moderada: hasta 200 mg/kg/día c/6 h',200,4,{minM:1}),S('c','Infección grave o meningitis: hasta 300 mg/kg/día c/6 h',300,4,{minM:1})],pres:[],pt:'vial IM/IV de 0,75 g, 1,5 g y 3 g.',note:'La fuente no aclara si los mg/kg son de ampicilina o de la combinación: se usa el valor tal como está escrito. Solo vía parenteral.'},
 {id:'cefalexina',n:'Cefalexina',alias:'keflex cefalosporina piodermitis faringoamigdalitis otitis',rel:['cefazolina','amoxicilina'],
- sc:[S('a','Habitual: hasta 50 mg/kg/día c/6 h VO',50,4,{minM:1}),S('b','Infección severa: hasta 100 mg/kg/día c/6 h (máx. 4 g/día)',100,4,{minM:1,max:4000}),S('c','Faringoamigdalitis/piodermitis: hasta 50 mg/kg/día c/12 h',50,2,{minM:1}),S('d','OMA: hasta 100 mg/kg/día c/6 h',100,4,{minM:1})],pres:[['250 mg por 5 mL',50]],note:''},
+ sc:[S('a','Habitual: hasta 50 mg/kg/día c/6 h VO',50,4,{minM:1}),S('b','Infección severa: hasta 100 mg/kg/día c/6 h (máx. 4 g/día)',100,4,{minM:1,max:4000}),S('c','Faringoamigdalitis/piodermitis: hasta 50 mg/kg/día c/12 h',50,2,{minM:1}),S('d','OMA: hasta 100 mg/kg/día c/6 h',100,4,{minM:1})],pres:[['125 mg por 5 mL',25],['250 mg por 5 mL',50]],tabs:[[500,false,'cápsula de 500 mg'],[1000,true,'tableta de 1 g']],pt:'suspensión de 125 y 250 mg/5 mL; cápsulas de 500 mg; tabletas de 1 g.',note:''},
 {id:'cefazolina',n:'Cefazolina',alias:'ancef cefalosporina profilaxis quirurgica',rel:['cefalexina','ceftriaxona'],
- sc:[S('a','50–100 mg/kg/día c/8 h IV–IM (se calcula con 100)',100,3,{minM:1})],pres:[],note:'Solo mayores de 28 días.'},
+ sc:[S('a','50–100 mg/kg/día c/8 h IV–IM (se calcula con 100)',100,3,{minM:1})],pres:[],pt:'ampolla de 500 mg y 1 g.',note:'Solo mayores de 28 días.'},
 {id:'ceftriaxona',n:'Ceftriaxona',alias:'rocefin cefalosporina meningitis otitis',rel:['cefazolina','ampisulbactam'],
- sc:[S('a','Mayores de 28 días: hasta 100 mg/kg/día c/12 h IV–IM',100,2,{minM:1}),S('b','Meningitis: hasta 100 mg/kg/día c/12 h IV',100,2,{minM:1}),S('c','OMA: 50 mg/kg DUD IM, máx. 1 g, 3 días',50,1,{minM:1,max:1000})],pres:[],note:'Rango de la fuente c/12–24 h; se calcula c/12 h salvo OMA.'},
+ sc:[S('a','Mayores de 28 días: hasta 100 mg/kg/día c/12 h IV–IM',100,2,{minM:1}),S('b','Meningitis: hasta 100 mg/kg/día c/12 h IV',100,2,{minM:1}),S('c','OMA: 50 mg/kg DUD IM, máx. 1 g, 3 días',50,1,{minM:1,max:1000})],pres:[],pt:'frasco-ampolla de 250, 500 mg y 1 g.',note:'Rango de la fuente c/12–24 h; se calcula c/12 h salvo OMA.'},
 {id:'azitromicina',n:'Azitromicina',alias:'zitromax macrolido',rel:['eritromicina'],
- sc:[S('a','Más de 6 meses: hasta 20 mg/kg DUD, 3–5 días',20,1,{minM:6}),S('b','Menos de 6 meses: 10 mg/kg DUD, 3–5 días',10,1,{minM:1,maxM:6}),S('c','Respiratoria: 10 mg/kg día 1; 5 mg/kg/día días 2–5',10,1,{minM:1,d2:5})],pres:[['200 mg por 5 mL',40]],note:'Tomar 2 h antes o después de comidas.'},
+ sc:[S('a','Más de 6 meses: hasta 20 mg/kg DUD, 3–5 días',20,1,{minM:6}),S('b','Menos de 6 meses: 10 mg/kg DUD, 3–5 días',10,1,{minM:1,maxM:6}),S('c','Respiratoria: 10 mg/kg día 1; 5 mg/kg/día días 2–5',10,1,{minM:1,d2:5})],pres:[['200 mg por 5 mL',40]],tabs:[[500,true,'500 mg']],pt:'suspensión de 200 mg/5 mL (frasco de 15 y 30 mL); tabletas de 500 mg.',note:'Tomar 2 h antes o después de comidas.'},
 {id:'eritromicina',n:'Eritromicina',alias:'macrolido ilosone pantomicina',rel:['azitromicina'],
- sc:[S('a','Etilsuccinato: hasta 50 mg/kg/día c/6 h VO',50,4,{minM:1}),S('b','Estolato: hasta 50 mg/kg/día c/6 h VO',50,4,{minM:1})],pres:[['250 mg por 5 mL',50]],note:'Evitar jugo de pomelo.'},
+ sc:[S('a','Etilsuccinato: hasta 50 mg/kg/día c/6 h VO',50,4,{minM:1}),S('b','Estolato: hasta 50 mg/kg/día c/6 h VO',50,4,{minM:1})],pres:[['125 mg por 5 mL',25],['250 mg por 5 mL',50]],tabs:[[500,true,'500 mg']],pt:'suspensión de 125 y 250 mg/5 mL; tabletas de 500 mg.',note:'Evitar jugo de pomelo.'},
 {id:'clindamicina',n:'Clindamicina IV',alias:'dalacin anaerobios',rel:['metronidazol','penicilinag'],
- sc:[S('a','General: 30 mg/kg/día c/8 h IV',30,3,{minM:1}),S('b','Anaerobios: 40 mg/kg/día c/8 h IV–IM',40,3,{minM:1})],pres:[],note:'Rango de la fuente c/6–8 h; se calcula c/8 h.'},
+ sc:[S('a','General: 30 mg/kg/día c/8 h IV',30,3,{minM:1}),S('b','Anaerobios: 40 mg/kg/día c/8 h IV–IM',40,3,{minM:1})],pres:[],pt:'ampolla de 600 mg/4 mL.',note:'Rango de la fuente c/6–8 h; se calcula c/8 h.'},
 {id:'metronidazol',n:'Metronidazol',alias:'flagyl anaerobios amebiasis giardiasis',rel:['clindamicina'],
- sc:[S('a','Anaerobios: hasta 50 mg/kg/día c/8 h',50,3,{minM:1}),S('b','Amebiasis: hasta 50 mg/kg/día c/8 h, 7–10 días VO',50,3,{minM:1}),S('c','Giardiasis: 15 mg/kg/día c/8 h, 5 días VO',15,3,{minM:1})],pres:[['250 mg por 5 mL',50]],note:''},
+ sc:[S('a','Anaerobios: hasta 50 mg/kg/día c/8 h',50,3,{minM:1}),S('b','Amebiasis: hasta 50 mg/kg/día c/8 h, 7–10 días VO',50,3,{minM:1}),S('c','Giardiasis: 15 mg/kg/día c/8 h, 5 días VO',15,3,{minM:1})],pres:[['250 mg por 5 mL',50]],tabs:[[250,false,'cápsula de 250 mg'],[500,true,'tableta de 500 mg']],pt:'suspensión de 250 mg/5 mL; cápsulas de 250 y 500 mg; tabletas de 500 mg; inyectable de 100 mg/500 mL.',note:''},
 {id:'gentamicina',n:'Gentamicina',alias:'aminoglucosido',rel:['amikacina','ampicilina'],
- sc:[S('a','Mayores de 28 días: 7,5 mg/kg/día c/8 h IV–IM',7.5,3,{minM:1})],pres:[],note:'La fuente trae además «mayores: 3–6 mg/kg/día c/8–24 h» sin edad precisa; no se usa. Vigilar función renal.'},
+ sc:[S('a','Mayores de 28 días: 7,5 mg/kg/día c/8 h IV–IM',7.5,3,{minM:1})],pres:[],pt:'ampollas de 40 mg/1 mL, 80 mg/2 mL y 160 mg/2 mL.',note:'La fuente trae además «mayores: 3–6 mg/kg/día c/8–24 h» sin edad precisa; no se usa. Vigilar función renal.'},
 {id:'amikacina',n:'Amikacina',alias:'aminoglucosido',rel:['gentamicina'],
- sc:[S('a','Mayores de 28 días: hasta 22,5 mg/kg/día c/8 h IV–IM',22.5,3,{minM:1}),S('b','ITU: hasta 15 mg/kg/día DUD, 10 días',15,1,{minM:1})],pres:[],note:'Vigilar función renal.'},
+ sc:[S('a','Mayores de 28 días: hasta 22,5 mg/kg/día c/8 h IV–IM',22.5,3,{minM:1}),S('b','ITU: hasta 15 mg/kg/día DUD, 10 días',15,1,{minM:1})],pres:[],pt:'ampollas de 100 mg, 250 mg y 500 mg/2 mL; 1 g/4 mL.',note:'Vigilar función renal.'},
 {id:'ciprofloxacina',n:'Ciprofloxacina',alias:'quinolona fluoroquinolona',rel:['trimetoprim'],
- sc:[S('a','Mayores de 12 años VO: hasta 40 mg/kg/día c/12 h',40,2,{minM:144}),S('b','Mayores de 12 años IV: hasta 20 mg/kg/día c/12 h',20,2,{minM:144})],pres:[],note:'No tomar con cationes (hierro, calcio, aluminio, magnesio).'},
+ sc:[S('a','Mayores de 12 años VO: hasta 40 mg/kg/día c/12 h',40,2,{minM:144}),S('b','Mayores de 12 años IV: hasta 20 mg/kg/día c/12 h',20,2,{minM:144,iv:true})],pres:[['250 mg por 5 mL',50],['500 mg por 5 mL',100]],tabs:[[250,true,'250 mg'],[500,true,'500 mg'],[750,true,'750 mg']],pt:'tabletas de 250, 500 y 750 mg; suspensión de 250 y 500 mg/5 mL; solución IV de 200 y 400 mg.',note:'No tomar con cationes (hierro, calcio, aluminio, magnesio).'},
 {id:'penicilinag',n:'Penicilina G benzatínica',alias:'bencetacil benzetacil sifilis fiebre reumatica faringitis',rel:['penicilinac','amoxicilina'],
- sc:[S('a','Faringoamigdalitis/ITRS: hasta 50.000 UI/kg DU IM (máx. 1.200.000)',50000,1,{minM:1,u:'UI',max:1200000}),S('b','Fiebre reumática, prevención: DU IM cada 21 días',0,1,{minM:1,u:'UI',fixed:w=>w<30?600000:1200000}),S('c','Sífilis congénita: 50.000 UI/kg semanal ×3',50000,1,{minM:1,u:'UI',max:1200000})],pres:[],note:'Corte 30 kg: criterio del proyecto (la fuente usa 27 kg).'},
+ sc:[S('a','Faringoamigdalitis/ITRS: hasta 50.000 UI/kg DU IM (máx. 1.200.000)',50000,1,{minM:1,u:'UI',max:1200000}),S('b','Fiebre reumática, prevención: DU IM cada 21 días',0,1,{minM:1,u:'UI',fixed:w=>w<30?600000:1200000}),S('c','Sífilis congénita: 50.000 UI/kg semanal ×3',50000,1,{minM:1,u:'UI',max:1200000})],pres:[],pt:'frasco-ampolla de 600.000, 1.200.000 y 2.400.000 UI.',note:'Corte 30 kg: criterio del proyecto (la fuente usa 27 kg).'},
 {id:'penicilinac',n:'Penicilina G cristalina',alias:'penicilina sodica potasica',rel:['penicilinag','oxacilina'],
- sc:[S('a','Mayores de 28 días: hasta 250.000 UI/kg/día c/6 h',250000,4,{minM:1,u:'UI'}),S('b','Neumonía: hasta 300.000 UI/kg/día c/6 h',300000,4,{minM:1,u:'UI'}),S('c','Infección severa: hasta 400.000 UI/kg/día c/6 h IV',400000,4,{minM:1,u:'UI'})],pres:[],note:'Rango de la fuente c/4–6 h; se calcula c/6 h. Sepsis y meningitis: el doble de la dosis usual, confirmar.'},
+ sc:[S('a','Mayores de 28 días: hasta 250.000 UI/kg/día c/6 h',250000,4,{minM:1,u:'UI'}),S('b','Neumonía: hasta 300.000 UI/kg/día c/6 h',300000,4,{minM:1,u:'UI'}),S('c','Infección severa: hasta 400.000 UI/kg/día c/6 h IV',400000,4,{minM:1,u:'UI'})],pres:[],pt:'frasco-ampolla de 1.000.000 y 5.000.000 UI.',note:'Rango de la fuente c/4–6 h; se calcula c/6 h. Sepsis y meningitis: el doble de la dosis usual, confirmar.'},
 {id:'oxacilina',n:'Oxacilina',alias:'penicilina antiestafilococica prostafilina',rel:['penicilinac','cefazolina'],
- sc:[S('a','Leve/moderada: hasta 150 mg/kg/día c/6 h IV',150,4,{minM:1}),S('b','Grave: hasta 200 mg/kg/día c/6 h IV',200,4,{minM:1}),S('c','Artritis séptica/osteomielitis: 200 mg/kg/día c/6 h IV',200,4,{minM:1})],pres:[],note:''},
+ sc:[S('a','Leve/moderada: hasta 150 mg/kg/día c/6 h IV',150,4,{minM:1}),S('b','Grave: hasta 200 mg/kg/día c/6 h IV',200,4,{minM:1}),S('c','Artritis séptica/osteomielitis: 200 mg/kg/día c/6 h IV',200,4,{minM:1})],pres:[],pt:'frasco-ampolla de 1, 2 y 4 g.',note:''},
 {id:'trimetoprim',n:'Trimetoprim/sulfametoxazol',alias:'tmp smx bactrim septrin cotrimoxazol',rel:['ciprofloxacina'],
- sc:[S('a','General: hasta 12 mg/kg/día de TMP c/12 h',12,2,{minM:1}),S('b','Diarrea bacteriana: 8 mg/kg/día de TMP c/12 h, 5 días',8,2,{minM:1}),S('c','OMA: 10 mg/kg/día de TMP c/12 h, 10 días',10,2,{minM:1}),S('d','Pneumocystis: hasta 20 mg/kg/día de TMP c/6 h, 21 días',20,4,{minM:1})],pres:[['40/200 mg por 5 mL',8],['80/400 mg por 5 mL',16]],note:'Dosis expresada como trimetoprim.'}
+ sc:[S('a','General: hasta 12 mg/kg/día de TMP c/12 h',12,2,{minM:1}),S('b','Diarrea bacteriana: 8 mg/kg/día de TMP c/12 h, 5 días',8,2,{minM:1}),S('c','OMA: 10 mg/kg/día de TMP c/12 h, 10 días',10,2,{minM:1}),S('d','Pneumocystis: hasta 20 mg/kg/día de TMP c/6 h, 21 días',20,4,{minM:1})],pres:[['40/200 mg por 5 mL',8],['80/400 mg por 5 mL',16]],tabs:[[80,true,'80/400 mg'],[160,true,'160/800 mg']],pt:'suspensión de 40/200 y 80/400 mg/5 mL; tabletas de 80/400 y 160/800 mg; ampolla de 80/400 mg/5 mL.',note:'Dosis expresada como trimetoprim.'}
 ];
 function mk(m){
  const opts=m.sc.map(s=>[s.k,s.l]),a=AD[m.id]||[AP,AR];
  return {id:m.id,n:m.n,grp:GRP,alias:m.alias,rel:m.rel,
   fields:[W,{id:'ay',label:'Edad: años cumplidos (admite decimales)',type:'number'},{id:'am',label:'Edad: meses adicionales (si es menor de 1 año, escriba solo los meses)',type:'number'},{id:'s',label:'Esquema',type:'select',opts:opts}],
   calc:v=>calcAbx(m,v),refP:PED+' Ficha de '+m.n.split(' (')[0]+'.',
-  adult:a[0],refA:a[1],info:m.note?'<p>'+m.note+'</p>':''};
+  adult:a[0],refA:a[1],info:(m.pt?'<p>Presentaciones disponibles: '+m.pt+'</p>':'')+(m.note?'<p>'+m.note+'</p>':'')};
 }
 function ageM(v){const y=Number.isFinite(v.ay)?v.ay:null,mo=Number.isFinite(v.am)?v.am:null;if(y===null&&mo===null)return null;return (y||0)*12+(mo||0)}
+function tabCheck(m,s,p){
+ if(!m.tabs||s.iv||s.u!=='mg')return null;
+ const ok=[];
+ m.tabs.forEach(t=>{const n=p/t[0],r=t[1]?Math.round(n*2)/2:Math.round(n);if(r>=(t[1]?0.5:1)&&Math.abs(p-r*t[0])/p<=0.10)ok.push(FR(r,1)+' de '+t[2]+' ('+FR(r*t[0])+' mg)')});
+ return ok;
+}
 function calcAbx(m,v){
  if(!(v.w>0))return {error:'Ingrese el peso.'};
  const M=ageM(v);
@@ -87,7 +93,9 @@ function calcAbx(m,v){
  l.push('Total diario: '+FR(tot)+' '+u+'/día ('+FR(s.d)+' '+u+'/kg/día × '+FR(v.w,2)+' kg).');
  l.push('Por dosis: '+FR(p)+' '+u+(s.n>1?' cada '+24/s.n+' horas ('+s.n+' dosis).':', dosis única diaria.'));
  if(s.d2){l.push('Días 2 a 5: '+FR(Math.round(s.d2*v.w))+' mg una vez al día.')}
- (m.pres||[]).forEach(r=>{l.push('Volumen con '+r[0]+': '+FR(p/r[1],1)+' mL por dosis.')});
+ const tc=tabCheck(m,s,p);
+ if(tc){if(tc.length)l.push('Tabletas: '+tc.join(' o ')+'.');else w.push('Rectificar presentación: '+FR(p)+' mg por toma no se ajusta a las tabletas disponibles. '+((m.pres||[]).length?'Se recomienda suspensión (ver volumen abajo).':'Se recomienda ajustar la dosis o usar otra presentación.'))}
+ if(!s.iv)(m.pres||[]).forEach(r=>{l.push('Volumen con '+r[0]+': '+FR(p/r[1],1)+' mL por dosis.')});
  l.push('Dosis más alta del rango de la fuente. Sin tope definido en la fuente salvo el indicado: verificar.');
  return {warn:w,lines:l};
 }
