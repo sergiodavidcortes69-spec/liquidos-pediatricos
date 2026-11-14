@@ -66,17 +66,19 @@ const D=[
 function mk(m){
  const opts=m.sc.map(s=>[s.k,s.l]),a=AD[m.id]||[AP,AR];
  return {id:m.id,n:m.n,grp:GRP,alias:m.alias,rel:m.rel,
-  fields:[W,{id:'m',label:'Edad (meses)',type:'number'},{id:'s',label:'Esquema',type:'select',opts:opts}],
+  fields:[W,{id:'ay',label:'Edad: años cumplidos (admite decimales)',type:'number'},{id:'am',label:'Edad: meses adicionales (si es menor de 1 año, escriba solo los meses)',type:'number'},{id:'s',label:'Esquema',type:'select',opts:opts}],
   calc:v=>calcAbx(m,v),refP:PED+' Ficha de '+m.n.split(' (')[0]+'.',
   adult:a[0],refA:a[1],info:m.note?'<p>'+m.note+'</p>':''};
 }
+function ageM(v){const y=Number.isFinite(v.ay)?v.ay:null,mo=Number.isFinite(v.am)?v.am:null;if(y===null&&mo===null)return null;return (y||0)*12+(mo||0)}
 function calcAbx(m,v){
  if(!(v.w>0))return {error:'Ingrese el peso.'};
- if(!Number.isFinite(v.m)||v.m<0)return {error:'Ingrese la edad en meses.'};
+ const M=ageM(v);
+ if(M===null||M<0)return {error:'Ingrese la edad en años y/o meses.'};
  const s=m.sc.find(x=>x.k===v.s)||m.sc[0];
- if(v.m<1)return {error:'Menor de 28 días: esquema neonatal por edad gestacional y peso; este módulo no lo calcula.'};
- if(s.minM!==undefined&&v.m<s.minM)return {error:'Este esquema no aplica: edad mínima '+s.minM+' meses.'};
- if(s.maxM!==undefined&&v.m>=s.maxM)return {error:'Este esquema no aplica: edad máxima menor de '+s.maxM+' meses.'};
+ if(M<1)return {error:'Menor de 28 días: esquema neonatal por edad gestacional y peso; este módulo no lo calcula.'};
+ if(s.minM!==undefined&&M<s.minM)return {error:'Este esquema no aplica: edad mínima '+s.minM+' meses.'};
+ if(s.maxM!==undefined&&M>=s.maxM)return {error:'Este esquema no aplica: edad máxima menor de '+s.maxM+' meses.'};
  const u=s.u,w=[],l=[],per=u==='UI'?1000:1;
  if(s.fixed){const x=s.fixed(v.w);l.push('Dosis única: '+FR(x)+' UI IM'+(s.k==='b'?' cada 21 días.':'.'));l.push('Corte: menos de 30 kg 600.000 UI; 30 kg o más 1.200.000 UI.');return {warn:w,lines:l}}
  let day=s.d*v.w,cap=s.max||m.max;
