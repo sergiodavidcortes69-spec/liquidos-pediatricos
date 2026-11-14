@@ -49,7 +49,7 @@ const MEDS=[
 ];
 const byId=id=>MEDS.find(m=>m.id===id);
 function search(t){t=norm(t).trim();if(!t)return [];const sc=m=>{const n=norm(m.n),al=norm(m.alias),g=norm(m.grp);return n.startsWith(t)?0:n.includes(t)?1:al.split(' ').some(x=>x.startsWith(t))?2:(al.includes(t)||g.includes(t))?3:9};return MEDS.map(m=>[sc(m),m]).filter(x=>x[0]<9).sort((a,b)=>a[0]-b[0]||a[1].n.localeCompare(b[1].n,'es')).map(x=>x[1])}
-function relatedOf(list){if(!list.length)return [];const seen=new Set(list.map(m=>m.id)),out=[];list[0].rel.concat(MEDS.filter(m=>m.grp===list[0].grp).map(m=>m.id)).forEach(id=>{if(!seen.has(id)){seen.add(id);out.push(byId(id))}});return out.slice(0,5)}
+function relatedOf(list){if(!list.length)return [];const seen=new Set(list.map(m=>m.id)),out=[];list[0].rel.concat(MEDS.filter(m=>m.grp===list[0].grp).map(m=>m.id)).forEach(id=>{if(!seen.has(id)){seen.add(id);const x=byId(id);if(x)out.push(x)}});return out.slice(0,5)}
 function chips(arr){return arr.map(m=>'<button type="button" data-open="'+m.id+'">'+m.n+'</button>').join('')}
 let cur=null,last='';
 function renderSearch(){const t=$('q').value,l=search(t),res=$('res'),st=$('status'),rel=$('rel');res.innerHTML='';rel.innerHTML='';if(!t.trim()){st.textContent='';return}
@@ -79,4 +79,4 @@ $('q').addEventListener('input',renderSearch);
 $('back').addEventListener('click',closeMed);$('tp').addEventListener('click',()=>tab(true));$('ta').addEventListener('click',()=>tab(false));
 $('form').addEventListener('input',e=>{if(e.target.type==='number'||e.target.type==='checkbox')calcOut()});
 $('form').addEventListener('change',e=>{const f=cur.fields.find(x=>'f_'+x.id===e.target.id);if(f&&f.type==='select'){if(f.reset)f.reset.forEach(i=>{const el=$('f_'+i);if(el)el.value=''});drawForm(true)}else if(f&&f.type==='check')calcOut()});
-</script></body></html>
+</script><script src="dosispro-antibioticos.js"></script></body></html>
