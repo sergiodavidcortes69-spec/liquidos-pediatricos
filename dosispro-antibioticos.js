@@ -1,7 +1,28 @@
-// DosisPro tanda 3: antimicrobianos (pediatría). Adultos: pendiente.
+// DosisPro tanda 3: antimicrobianos (pediatría y adultos).
 (function(){
 const FR=(x,d=0)=>x.toLocaleString('es-CO',{maximumFractionDigits:d});
 const GRP='Antimicrobianos',AP='Referencia de adultos pendiente de completar y validar. No se extrapola desde pediatría.',AR='Pendiente: Manual de Terapéutica, cap. 4 (Antibacterianos).';
+const RN='Guía de NAC (tablas aportadas; nombre y año por confirmar)',RO='OPS, Tratamiento de las enfermedades infecciosas 2024-2026',RA='Antimicrobianos.pdf (proyecto)',RC='Fundamentos de Farmacología en Terapéutica, 6.ª ed. (Celsus)';
+const AD={
+amoxicilina:['NAC leve: 500 mg–1 g VO cada 8 h (ajuste renal: sí). Ántrax cutáneo: 1 g VO cada 8 h. H. pylori: 1 g VO cada 12 h junto con omeprazol y claritromicina.',RN+'; '+RO+'.'],
+amoxiclav:['Dos opciones según la fuente. Guía de NAC moderada, oral: 875/125–1.000/125 mg VO cada 8 h (ajuste renal: sí). OPS, piel y mordeduras: 875/125 mg VO cada 12 h; IV 1.000/200 mg cada 8 h.',RN+'; '+RO+'.'],
+ampicilina:['Dosis usual: 250–500 mg cada 6 h. En casos graves: hasta 2–3 g cada 6 h.',RC+', tabla de penicilinas.'],
+ampisulbactam:['NAC moderada o grave: 1,5–3 g IV cada 6 h (ajuste renal: sí). Mordedura humana: 750 mg VO o IV cada 8 h.',RN+'; '+RO+'.'],
+cefalexina:['250–500 mg VO cada 6 h. OPS: 500 mg cada 6 h; miositis, 1 g cada 8 h.',RA+'; '+RO+'.'],
+cefazolina:['Antimicrobianos.pdf: 1–2 g IV cada 6 h. OPS: 1 g cada 8 h en piel y partes blandas; 2 g cada 8 h en miositis.',RA+'; '+RO+'.'],
+ceftriaxona:['NAC moderada o grave: 1–2 g IV cada 24 h (sin ajuste renal). Antimicrobianos.pdf: 1–2 g cada 12–24 h, máximo 4 g/día. OPS: 2 g cada 24 h; meningitis, 2 g cada 12 h.',RN+'; '+RA+'; '+RO+'.'],
+azitromicina:['500 mg VO cada 24 h. Fiebre tifoidea: 1 g VO cada 24 h.',RO+'.'],
+eritromicina:['500 mg VO cada 6 h; máximo 1 g cada 6 h.',RO+'.'],
+clindamicina:['600 mg IV cada 8 h, o 300–450 mg VO cada 6 h. Máximo: 900 mg IV cada 8 h y 450 mg VO cada 6 h.',RO+'.'],
+metronidazol:['500 mg IV o VO cada 8 h. Amebiasis: 500 mg VO cada 8 h por 10 días.',RO+'.'],
+gentamicina:['5 mg/kg IV una vez al día (cada 24 h). Ajustar por función renal y monitorizar niveles.',RO+'.'],
+amikacina:['15 mg/kg cada 24 h; 20 mg/kg cada 24 h si hay riesgo de multirresistencia.',RO+'.'],
+ciprofloxacina:['NAC con factores de riesgo, oral: 500 mg cada 12 h (ajuste renal: sí). OPS: 500–750 mg VO cada 12 h; IV 400 mg cada 12 h.',RN+'; '+RO+'.'],
+penicilinag:['Sífilis temprana: 2,4 millones UI IM, dosis única. Sífilis tardía: 2,4 millones UI IM una vez por semana por 3 semanas.',RO+'.'],
+penicilinac:['2 millones UI IV cada 4 h (mordedura de rata). Neurosífilis: 3–4 millones UI IV cada 4 h.',RO+'.'],
+oxacilina:['1–2 g IV cada 4–6 h; miositis purulenta: 2 g IV cada 6 h.',RO+'.'],
+trimetoprim:['160/800 mg (TMP/SMX) VO cada 12 h (NAC con factores de riesgo; ajuste renal: sí). OPS: 1–2 tabletas dobles cada 12 h.',RN+'; '+RO+'.']
+};
 const S=(k,l,d,n,o)=>Object.assign({k:k,l:l,d:d,n:n,u:'mg'},o||{});
 const D=[
 {id:'amoxicilina',n:'Amoxicilina',alias:'penicilina aminopenicilina otitis neumonia faringitis amoxil',rel:['amoxiclav','ampicilina','cefalexina'],
@@ -19,7 +40,7 @@ const D=[
  sc:[S('a','50–100 mg/kg/día c/8 h IV–IM (se calcula con 100)',100,3,{minM:1})],pres:[],note:'Solo mayores de 28 días.'},
 {id:'ceftriaxona',n:'Ceftriaxona',alias:'rocefin cefalosporina meningitis otitis',rel:['cefazolina','ampisulbactam'],
  sc:[S('a','Mayores de 28 días: hasta 100 mg/kg/día c/12 h IV–IM',100,2,{minM:1}),S('b','Meningitis: hasta 100 mg/kg/día c/12 h IV',100,2,{minM:1}),S('c','OMA: 50 mg/kg DUD IM, máx. 1 g, 3 días',50,1,{minM:1,max:1000})],pres:[],note:'Rango de la fuente c/12–24 h; se calcula c/12 h salvo OMA.'},
-{id:'azitromicina',n:'Azitromicina',alias:'zitromax macrolido',rel:['eritromicina','claritromicina'],
+{id:'azitromicina',n:'Azitromicina',alias:'zitromax macrolido',rel:['eritromicina'],
  sc:[S('a','Más de 6 meses: hasta 20 mg/kg DUD, 3–5 días',20,1,{minM:6}),S('b','Menos de 6 meses: 10 mg/kg DUD, 3–5 días',10,1,{minM:1,maxM:6}),S('c','Respiratoria: 10 mg/kg día 1; 5 mg/kg/día días 2–5',10,1,{minM:1,d2:5})],pres:[['200 mg por 5 mL',40]],note:'Tomar 2 h antes o después de comidas.'},
 {id:'eritromicina',n:'Eritromicina',alias:'macrolido ilosone pantomicina',rel:['azitromicina'],
  sc:[S('a','Etilsuccinato: hasta 50 mg/kg/día c/6 h VO',50,4,{minM:1}),S('b','Estolato: hasta 50 mg/kg/día c/6 h VO',50,4,{minM:1})],pres:[['250 mg por 5 mL',50]],note:'Evitar jugo de pomelo.'},
@@ -43,11 +64,11 @@ const D=[
  sc:[S('a','General: hasta 12 mg/kg/día de TMP c/12 h',12,2,{minM:1}),S('b','Diarrea bacteriana: 8 mg/kg/día de TMP c/12 h, 5 días',8,2,{minM:1}),S('c','OMA: 10 mg/kg/día de TMP c/12 h, 10 días',10,2,{minM:1}),S('d','Pneumocystis: hasta 20 mg/kg/día de TMP c/6 h, 21 días',20,4,{minM:1})],pres:[['40/200 mg por 5 mL',8],['80/400 mg por 5 mL',16]],note:'Dosis expresada como trimetoprim.'}
 ];
 function mk(m){
- const opts=m.sc.map(s=>[s.k,s.l]);
+ const opts=m.sc.map(s=>[s.k,s.l]),a=AD[m.id]||[AP,AR];
  return {id:m.id,n:m.n,grp:GRP,alias:m.alias,rel:m.rel,
   fields:[W,{id:'m',label:'Edad (meses)',type:'number'},{id:'s',label:'Esquema',type:'select',opts:opts}],
   calc:v=>calcAbx(m,v),refP:PED+' Ficha de '+m.n.split(' (')[0]+'.',
-  adult:AP,refA:AR,info:m.note?'<p>'+m.note+'</p>':''};
+  adult:a[0],refA:a[1],info:m.note?'<p>'+m.note+'</p>':''};
 }
 function calcAbx(m,v){
  if(!(v.w>0))return {error:'Ingrese el peso.'};
