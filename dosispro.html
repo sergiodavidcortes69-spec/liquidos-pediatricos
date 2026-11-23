@@ -79,4 +79,4 @@ $('q').addEventListener('input',renderSearch);
 $('back').addEventListener('click',closeMed);$('tp').addEventListener('click',()=>tab(true));$('ta').addEventListener('click',()=>tab(false));
 $('form').addEventListener('input',e=>{if(e.target.type==='number'||e.target.type==='checkbox')calcOut()});
 $('form').addEventListener('change',e=>{const f=cur.fields.find(x=>'f_'+x.id===e.target.id);if(f&&f.type==='select'){if(f.reset)f.reset.forEach(i=>{const el=$('f_'+i);if(el)el.value=''});drawForm(true)}else if(f&&f.type==='check')calcOut()});
-</script><script src="dosispro-antibioticos.js"></script><script src="dosispro-analgesicos.js"></script></body></html>
+</script><script src="dosispro-antibioticos.js"></script><script src="dosispro-analgesicos.js"></script><script src="dosispro-digestivo.js"></script></body></html>

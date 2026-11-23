@@ -2,7 +2,7 @@
 (function(){
 const FR=(x,d=0)=>x.toLocaleString('es-CO',{maximumFractionDigits:d});
 const RD=x=>x<1?Math.round(x*100)/100:x<10?Math.round(x*10)/10:Math.round(x);
-const GRP='Digestivo';
+const GRP='Gastrointestinal';
 const PP='PEDIADOSIS®. Dosis de medicamentos en pediatría. Velásquez O.J. Health Book’s Editorial.';
 const RA='Guía básica de anestesia (capítulos de antieméticos y analgésicos)';
 const AD={
